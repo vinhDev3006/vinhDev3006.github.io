@@ -3,182 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VinhDEV</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Vinh Nguyen</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            height: 100vh;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #1a1a1a;
+        }
+
+        /* Navigation dots */
+        .nav-dots {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-dot.active {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: scale(1.3);
+        }
+
+        .nav-dot:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+            transform: scale(1.2);
+        }
+
+        /* Smooth scroll behavior */
         html {
             scroll-behavior: smooth;
         }
-        body {
-            position: relative;
-        }
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('images/bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.2;
-            z-index: -1;
-        }
-        .glass-effect {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(5px);
-        }
-        .glass-effect-dark {
-            background-color: rgba(30, 41, 59, 0.85);
-            backdrop-filter: blur(5px);
-        }
-        .glass-effect-primary {
-            background-color: rgba(79, 70, 229, 0.85);
-            backdrop-filter: blur(5px);
-        }
-        .section-padding {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .nav-dots {
+                right: 1rem;
+            }
+
+            .nav-dot {
+                width: 10px;
+                height: 10px;
+            }
         }
     </style>
 </head>
-<body class="font-sans text-gray-800">
-    
-    <!-- Header -->
-    <section id="header" class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/70 to-purple-600/70 z-0"></div>
-        <div class="max-w-4xl mx-auto z-10 text-white">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4">Hello!</h1>
-            <p class="text-2xl md:text-3xl mb-12">VinhDEV</p>
-            <a href="#support" class="inline-block bg-white text-indigo-700 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition-colors duration-300">
-                Support Info
-            </a>
-        </div>
-        <div class="absolute bottom-10 w-full text-center z-10">
-            <a href="#one" class="text-white opacity-75 hover:opacity-100 transition-opacity duration-300">
-                <i class="fas fa-chevron-down text-2xl animate-bounce"></i>
-            </a>
-        </div>
+<body>
+    <!-- Slide 1 -->
+    <section class="slide" id="slide-1">
+        <img src="slides/1.png" alt="Vinh Nguyen - Project Manager at Enable Startup">
     </section>
 
-    <!-- Who I am -->
-    <section id="one" class="section-padding">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="glass-effect rounded-2xl shadow-xl overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 h-auto md:h-[600px]">
-                        <img src="images/pic01.jpg" 
-                            alt="Developer working" class="w-full h-full object-cover">
-                    </div>
-                    <div class="md:w-1/2 p-8 md:p-10">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-indigo-700">Who I am</h2>
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            I am a Developer and Project Manager with experience in web, mobile, and AI engineering. 
-                            I enjoy building solutions, leading projects, and working with teams to bring ideas to life. 
-                            My goal is to keep learning and create successful, impactful projects.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Slide 2 -->
+    <section class="slide" id="slide-2">
+        <img src="slides/2.png" alt="Education and Experiences">
     </section>
 
-    
-    <!-- Stuff I do -->
-    <section id="two" class="section-padding">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="glass-effect rounded-2xl shadow-xl overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 order-2 md:order-1 h-auto md:h-[600px]">
-                        <img src="images/pic02.jpg" 
-                            alt="Coding workspace" class="w-full h-full object-cover">
-                    </div>
-                    <div class="md:w-1/2 p-8 md:p-10 order-1 md:order-2">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-indigo-700">Stuff I do</h2>
-                        <p class="text-lg text-gray-700 mb-8">
-                            I turn ideas into results and keep things moving forward, no matter the challenge. 
-                            Whether it's solving problems or managing the chaos, I make it happen.
-                        </p>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <div class="text-indigo-600 text-3xl mb-3">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <h3 class="text-lg font-bold mb-2">Code by Night</h3>
-                                <p class="text-gray-600">Turning complex problems into elegant solutions.</p>
-                            </div>
-                            
-                            <div>
-                                <div class="text-indigo-600 text-3xl mb-3">
-                                    <i class="fas fa-coffee"></i>
-                                </div>
-                                <h3 class="text-lg font-bold mb-2">Chill by Day</h3>
-                                <p class="text-gray-600">Finding balance through relaxation and mindful breaks.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" onclick="scrollToSlide(0)"></div>
+        <div class="nav-dot" onclick="scrollToSlide(1)"></div>
+    </div>
 
+    <script>
+        // Update active dot on scroll
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.nav-dot');
 
+        function updateActiveDot() {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-    <!-- One more thing -->
-    <section id="three" class="section-padding">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="glass-effect rounded-2xl shadow-xl overflow-hidden">
-                <div class="md:flex flex-row-reverse">
-                    <div class="md:w-1/2 h-auto md:h-[600px]">
-                        <img src="images/pic03.jpg" 
-                            alt="Team collaboration" class="w-full h-full object-cover">
-                    </div>
-                    <div class="md:w-1/2 p-8 md:p-10">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-indigo-700">One more thing</h2>
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            When life gets tough, I believe a little positivity can go a long way. 
-                            I hope whatever you're facing today, you find a reason to smile.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideBottom = slideTop + slide.offsetHeight;
 
+                if (scrollPosition >= slideTop && scrollPosition < slideBottom) {
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[index].classList.add('active');
+                }
+            });
+        }
 
+        function scrollToSlide(index) {
+            slides[index].scrollIntoView({ behavior: 'smooth' });
+        }
 
-    <!-- Support -->
-    <section id="support" class="section-padding">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center">
-                <div class="glass-effect-primary inline-block rounded-lg p-8 shadow-xl">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white">Support:</h2>
-                    <div class="bg-white text-indigo-700 rounded-lg p-6 shadow-lg">
-                        <p class="text-xl mb-2">Name: Nguyễn Ngọc Vĩnh</p>
-                        <p class="text-xl">
-                            Email: 
-                            <a href="mailto:vinhngoc30062002@gmail.com" class="text-indigo-600 hover:text-indigo-800 underline">
-                                vinhngoc30062002@gmail.com
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Throttle scroll event for performance
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                window.cancelAnimationFrame(scrollTimeout);
+            }
+            scrollTimeout = window.requestAnimationFrame(updateActiveDot);
+        });
 
-    <!-- Footer -->
-    <footer class="glass-effect-dark text-white py-8">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center">
-                <p>&copy; VinhDEV</p>
-            </div>
-        </div>
-    </footer>
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const currentIndex = Array.from(dots).findIndex(dot => dot.classList.contains('active'));
 
+            if (e.key === 'ArrowDown' && currentIndex < slides.length - 1) {
+                scrollToSlide(currentIndex + 1);
+            } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+                scrollToSlide(currentIndex - 1);
+            }
+        });
+    </script>
 </body>
 </html>
