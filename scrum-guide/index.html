@@ -278,9 +278,8 @@
                 dot.classList.toggle('active', index === currentSlide);
             });
 
-            // Change dot color based on slide background
-            const currentSlideElement = slides[currentSlide];
-            if (currentSlideElement && currentSlideElement.dataset.bg === 'white') {
+            // Change dot color for white background slides (slides 13-26, which are index 12-25)
+            if (currentSlide >= 12 && currentSlide <= 25) {
                 navDots.classList.add('dark-mode');
             } else {
                 navDots.classList.remove('dark-mode');
