@@ -67,6 +67,20 @@
             transform: scale(1.2);
         }
 
+        /* Dark dots for white background slides */
+        .nav-dots.dark-mode .nav-dot {
+            background-color: rgba(12, 140, 233, 0.3);
+            border: 2px solid rgba(12, 140, 233, 0.5);
+        }
+
+        .nav-dots.dark-mode .nav-dot.active {
+            background-color: rgba(12, 140, 233, 0.9);
+        }
+
+        .nav-dots.dark-mode .nav-dot:hover {
+            background-color: rgba(12, 140, 233, 0.7);
+        }
+
         /* Smooth scroll behavior */
         html {
             scroll-behavior: smooth;
@@ -147,72 +161,72 @@
     </section>
 
     <!-- Slide 13 -->
-    <section class="slide" id="slide-13">
+    <section class="slide" id="slide-13" data-bg="white">
         <img src="slides/13.png">
     </section>
 
     <!-- Slide 14 -->
-    <section class="slide" id="slide-14">
+    <section class="slide" id="slide-14" data-bg="white">
         <img src="slides/14.png">
     </section>
 
     <!-- Slide 15 -->
-    <section class="slide" id="slide-15">
+    <section class="slide" id="slide-15" data-bg="white">
         <img src="slides/15.png">
     </section>
 
     <!-- Slide 16 -->
-    <section class="slide" id="slide-16">
+    <section class="slide" id="slide-16" data-bg="white">
         <img src="slides/16.png">
     </section>
 
     <!-- Slide 17 -->
-    <section class="slide" id="slide-17">
+    <section class="slide" id="slide-17" data-bg="white">
         <img src="slides/17.png">
     </section>
 
     <!-- Slide 18 -->
-    <section class="slide" id="slide-18">
+    <section class="slide" id="slide-18" data-bg="white">
         <img src="slides/18.png">
     </section>
 
     <!-- Slide 19 -->
-    <section class="slide" id="slide-19">
+    <section class="slide" id="slide-19" data-bg="white">
         <img src="slides/19.png">
     </section>
 
     <!-- Slide 20 -->
-    <section class="slide" id="slide-20">
+    <section class="slide" id="slide-20" data-bg="white">
         <img src="slides/20.png">
     </section>
 
     <!-- Slide 21 -->
-    <section class="slide" id="slide-21">
+    <section class="slide" id="slide-21" data-bg="white">
         <img src="slides/21.png">
     </section>
 
     <!-- Slide 22 -->
-    <section class="slide" id="slide-22">
+    <section class="slide" id="slide-22" data-bg="white">
         <img src="slides/22.png">
     </section>
 
     <!-- Slide 23 -->
-    <section class="slide" id="slide-23">
+    <section class="slide" id="slide-23" data-bg="white">
         <img src="slides/23.png">
     </section>
 
     <!-- Slide 24 -->
-    <section class="slide" id="slide-24">
+    <section class="slide" id="slide-24" data-bg="white">
         <img src="slides/24.png">
     </section>
 
     <!-- Slide 25 -->
-    <section class="slide" id="slide-25">
+    <section class="slide" id="slide-25" data-bg="white">
         <img src="slides/25.png">
     </section>
 
     <!-- Slide 26 -->
-    <section class="slide" id="slide-26">
+    <section class="slide" id="slide-26" data-bg="white">
         <img src="slides/26.png">
     </section>
 
@@ -255,6 +269,7 @@
     <script>
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.nav-dot');
+        const navDots = document.querySelector('.nav-dots');
         let currentSlide = 0;
         let isScrolling = false;
 
@@ -262,6 +277,14 @@
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSlide);
             });
+
+            // Change dot color based on slide background
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && currentSlideElement.dataset.bg === 'white') {
+                navDots.classList.add('dark-mode');
+            } else {
+                navDots.classList.remove('dark-mode');
+            }
         }
 
         function scrollToSlide(index) {
