@@ -240,24 +240,24 @@ function renderPrev(){return '<p class="section-desc">Preventive & condition-bas
    ============================================================ */
 function renderErd(){
   var tblPos={
-    T000:{x:10,y:30},T001:{x:10,y:130},T001W:{x:200,y:30},T001L:{x:200,y:160},
-    MARD:{x:200,y:268},T024I:{x:390,y:30},CRHD:{x:390,y:140},CRCO:{x:390,y:258},
-    IFLO:{x:600,y:30},EQUI:{x:800,y:30},ILOA:{x:600,y:160},
-    STKO:{x:800,y:160},STPO:{x:960,y:160},KLAH:{x:800,y:268},KSSK:{x:960,y:268},
-    QMEL:{x:10,y:400},QMFE:{x:10,y:540},AUFK:{x:200,y:400},AFKO:{x:200,y:560},
-    AFVC:{x:400,y:400},RESB:{x:400,y:540},AFRU:{x:540,y:400},
-    COBK:{x:540,y:540},COEP:{x:540,y:650},
-    PLKO:{x:730,y:400},PLPO:{x:730,y:530},PLMZ:{x:730,y:650},
-    MPLA:{x:910,y:400},MPOS:{x:910,y:530},MHIS:{x:910,y:650},
-    STRA:{x:1060,y:400},STRAT_P:{x:1060,y:520},
-    IMPTT:{x:1060,y:630},IMRG:{x:1060,y:738}
+    T000:{x:20,y:40},T001:{x:20,y:185},T001W:{x:260,y:40},T001L:{x:260,y:210},
+    MARD:{x:260,y:370},T024I:{x:500,y:40},CRHD:{x:500,y:195},CRCO:{x:500,y:370},
+    IFLO:{x:740,y:40},EQUI:{x:1000,y:40},ILOA:{x:740,y:220},
+    STKO:{x:1000,y:220},STPO:{x:1240,y:220},KLAH:{x:1000,y:390},KSSK:{x:1240,y:390},
+    QMEL:{x:20,y:580},QMFE:{x:20,y:770},AUFK:{x:280,y:580},AFKO:{x:280,y:790},
+    AFVC:{x:520,y:580},RESB:{x:520,y:760},AFRU:{x:730,y:580},
+    COBK:{x:730,y:770},COEP:{x:730,y:930},
+    PLKO:{x:960,y:580},PLPO:{x:960,y:760},PLMZ:{x:960,y:950},
+    MPLA:{x:1180,y:580},MPOS:{x:1180,y:760},MHIS:{x:1180,y:950},
+    STRA:{x:1380,y:580},STRAT_P:{x:1380,y:730},
+    IMPTT:{x:1380,y:880},IMRG:{x:1380,y:1030}
   };
 
   var domains=[
-    {label:"Organizational master data",x:0,y:0,w:570,h:335,color:"teal"},
-    {label:"Technical objects",x:590,y:0,w:550,h:335,color:"purple"},
-    {label:"Maintenance processing (transactional)",x:0,y:370,w:700,h:420,color:"blue"},
-    {label:"Preventive maintenance",x:720,y:370,w:430,h:420,color:"amber"}
+    {label:"Organizational master data",x:0,y:0,w:700,h:520,color:"teal"},
+    {label:"Technical objects",x:720,y:0,w:720,h:520,color:"purple"},
+    {label:"Maintenance processing (transactional)",x:0,y:550,w:920,h:530,color:"blue"},
+    {label:"Preventive maintenance",x:940,y:550,w:630,h:630,color:"amber"}
   ];
 
   function tblHtml(key){
@@ -316,15 +316,15 @@ function renderErd(){
     else if(r[3]==='b'&&r[4]==='b'){var my2=Math.max(a.y,b.y)+18;path='M'+a.x+','+a.y+' L'+a.x+','+my2+' L'+b.x+','+my2+' L'+b.x+','+b.y;}
     else{path='M'+a.x+','+a.y+' L'+b.x+','+b.y;}
     var lx=(a.x+b.x)/2,ly=(a.y+b.y)/2;
-    svgL+='<path d="'+path+'" stroke="var(--line)" stroke-width="1" fill="none" opacity=".5"/>';
-    svgL+='<rect x="'+(lx-14)+'" y="'+(ly-7)+'" width="28" height="13" rx="3" fill="var(--bg)" stroke="var(--line)" stroke-width=".4"/>';
-    svgL+='<text x="'+lx+'" y="'+(ly+3)+'" text-anchor="middle" font-size="8" font-family="IBM Plex Mono,monospace" fill="var(--text3)">'+r[2]+'</text>';
+    svgL+='<path d="'+path+'" stroke="var(--line)" stroke-width="1.5" fill="none" opacity=".7"/>';
+    svgL+='<rect x="'+(lx-16)+'" y="'+(ly-8)+'" width="32" height="16" rx="4" fill="var(--bg)" stroke="var(--line)" stroke-width=".6"/>';
+    svgL+='<text x="'+lx+'" y="'+(ly+4)+'" text-anchor="middle" font-size="10" font-weight="500" font-family="IBM Plex Mono,monospace" fill="var(--text2)">'+r[2]+'</text>';
   });
 
   var domH=domains.map(function(d){var c=COLORS[d.color];return '<div class="erd-domain" style="left:'+d.x+'px;top:'+d.y+'px;width:'+d.w+'px;height:'+d.h+'px"><div class="erd-domain-label" style="color:'+c.fg+'">'+d.label+'</div></div>';}).join('');
   var tbls=Object.keys(ERD).map(function(k){return tblHtml(k);}).join('');
 
-  return '<p class="section-desc">Full EAM data model \u2014 ERD with PK/FK relationships across all 4 domains. Click any table for field details and joins.</p><div class="legend-bar"><span class="tag" style="background:var(--teal-l);color:var(--teal)">\u25cf Org master data</span><span class="tag" style="background:var(--purple-l);color:var(--purple)">\u25cf Technical objects</span><span class="tag" style="background:var(--blue-l);color:var(--blue)">\u25cf Maint. processing</span><span class="tag" style="background:var(--amber-l);color:var(--amber)">\u25cf Preventive maint.</span><span class="tag" style="font-family:IBM Plex Mono,monospace;background:var(--bg2)"><span style="color:var(--amber);font-weight:700">PK</span> Primary key</span><span class="tag" style="font-family:IBM Plex Mono,monospace;background:var(--bg2)"><span style="color:var(--blue);font-weight:600">FK</span> Foreign key</span></div><div class="erd-wrap"><div class="erd-canvas" style="width:1200px;height:820px">'+domH+'<svg class="erd-svg" width="1200" height="820" viewBox="0 0 1200 820">'+svgL+'</svg>'+tbls+'</div></div>';
+  return '<p class="section-desc">Full EAM data model \u2014 ERD with PK/FK relationships across all 4 domains. Click any table for field details and joins.</p><div class="legend-bar"><span class="tag" style="background:var(--teal-l);color:var(--teal)">\u25cf Org master data</span><span class="tag" style="background:var(--purple-l);color:var(--purple)">\u25cf Technical objects</span><span class="tag" style="background:var(--blue-l);color:var(--blue)">\u25cf Maint. processing</span><span class="tag" style="background:var(--amber-l);color:var(--amber)">\u25cf Preventive maint.</span><span class="tag" style="font-family:IBM Plex Mono,monospace;background:var(--bg2)"><span style="color:var(--amber);font-weight:700">PK</span> Primary key</span><span class="tag" style="font-family:IBM Plex Mono,monospace;background:var(--bg2)"><span style="color:var(--blue);font-weight:600">FK</span> Foreign key</span></div><div class="erd-wrap"><div class="erd-canvas" style="width:1580px;height:1200px">'+domH+'<svg class="erd-svg" width="1580" height="1200" viewBox="0 0 1580 1200">'+svgL+'</svg>'+tbls+'</div></div>';
 }
 
 /* ============================================================
