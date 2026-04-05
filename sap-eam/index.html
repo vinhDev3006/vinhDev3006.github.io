@@ -37,28 +37,49 @@
 --shadow:0 1px 3px rgba(0,0,0,.3),0 4px 12px rgba(0,0,0,.2);
 --shadow-hover:0 4px 20px rgba(0,0,0,.4);
 }}
-body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;line-height:1.6;padding:20px 16px 60px}
-.page{max-width:1200px;margin:0 auto}
-header{text-align:center;margin-bottom:28px}
-header h1{font-size:24px;font-weight:700;letter-spacing:-.5px;margin-bottom:2px}
-header p.sub{font-size:13px;color:var(--text2)}
-header .badge{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:6px;letter-spacing:.5px;text-transform:uppercase}
-.tab-bar{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;background:var(--bg2);padding:4px;border-radius:10px;max-width:900px;margin-left:auto;margin-right:auto}
-.tab-btn{padding:8px 14px;border:none;background:transparent;border-radius:8px;font-family:inherit;font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
-.tab-btn:hover{color:var(--text);background:var(--card)}
-.tab-btn.active{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
-.tab-btn .tc{font-size:10px;background:var(--bg2);padding:1px 6px;border-radius:8px;margin-left:4px;font-weight:600}
-.tab-btn.active .tc{background:var(--accent-light);color:var(--accent)}
+/* ── Desktop app shell ─────────────────────────────────────────────── */
+*{box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;line-height:1.6;display:flex;flex-direction:column;margin:0;padding:0}
+
+/* Top bar */
+.topbar{display:flex;align-items:center;gap:16px;padding:0 24px;height:56px;background:var(--card);border-bottom:1.5px solid var(--line);flex-shrink:0;z-index:50}
+.topbar h1{font-size:15px;font-weight:700;letter-spacing:-.3px;white-space:nowrap}
+.topbar .sub{font-size:11px;color:var(--text2);white-space:nowrap}
+.topbar .badge{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:9px;font-weight:600;padding:2px 8px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+.topbar .spacer{flex:1}
+
+/* Main layout: sidebar + content */
+.shell{display:flex;flex:1;overflow:hidden}
+
+/* Left sidebar nav */
+.sidebar{width:200px;flex-shrink:0;background:var(--card);border-right:1.5px solid var(--line);display:flex;flex-direction:column;padding:12px 8px;gap:2px;overflow-y:auto}
+.sidebar-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);padding:10px 10px 4px;margin-top:4px}
+.tab-btn{display:flex;align-items:center;gap:9px;width:100%;padding:9px 12px;border:none;background:transparent;border-radius:8px;font-family:inherit;font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .15s;text-align:left;white-space:nowrap}
+.tab-btn:hover{color:var(--text);background:var(--bg2)}
+.tab-btn.active{background:var(--accent-light);color:var(--accent);font-weight:600}
+.tab-btn .ti{font-size:15px;flex-shrink:0}
+.tab-btn .tc{margin-left:auto;font-size:9px;background:var(--bg2);padding:1px 6px;border-radius:8px;font-weight:600}
+.tab-btn.active .tc{background:var(--accent);color:#fff}
+
+/* Content area */
+.content{flex:1;overflow-y:auto;overflow-x:hidden;padding:28px 32px 60px}
+
+/* Legacy compat */
+.page{width:100%}
+header{display:none}
+.tab-bar{display:none}
+
 .section{display:none}.section.active{display:block}
-.section-desc{text-align:center;font-size:13px;color:var(--text2);margin-bottom:20px;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.6}
-.legend-bar{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:24px}
+.section-desc{font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.6;max-width:900px}
+.legend-bar{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
 .legend-bar .tag{font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;letter-spacing:.3px}
 .diagram{display:flex;flex-direction:column;align-items:center;gap:0}
 .tier{display:flex;justify-content:center;gap:12px;width:100%;flex-wrap:wrap}
 .connector-v{width:2px;height:28px;background:var(--line);margin:0 auto;position:relative}
 .connector-v::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--line)}
 .connector-v .label{position:absolute;right:-38px;top:4px;font-size:10px;color:var(--text3);font-weight:500;white-space:nowrap;font-family:'IBM Plex Mono',monospace}
-.org-card{background:var(--card);border-radius:10px;border:1.5px solid var(--line);cursor:pointer;transition:all .2s;box-shadow:var(--shadow);overflow:hidden;width:240px;min-width:180px}
+.org-card{background:var(--card);border-radius:10px;border:1.5px solid var(--line);cursor:pointer;transition:all .2s;box-shadow:var(--shadow);overflow:hidden;width:260px;min-width:200px}
 .org-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
 .org-card.active{border-color:var(--accent)}
 .org-card .ch{padding:12px 14px 8px;display:flex;align-items:center;gap:8px}
@@ -91,7 +112,7 @@ header .badge{display:inline-block;background:var(--accent-light);color:var(--ac
 .flow-row{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin:6px 0}
 .fa{color:var(--line);font-size:20px;padding:0 2px;flex-shrink:0}
 /* ERD */
-.erd-wrap{overflow-x:auto;padding:10px 0 40px}
+.erd-wrap{overflow:auto;padding:10px 0 40px;max-height:calc(100vh - 160px)}
 .erd-canvas{position:relative;min-height:850px}
 .erd-domain{position:absolute;border:1.5px dashed var(--line);border-radius:14px;padding:36px 12px 12px}
 .erd-domain-label{position:absolute;top:-11px;left:16px;background:var(--bg);padding:0 10px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px}
@@ -100,6 +121,7 @@ header .badge{display:inline-block;background:var(--accent-light);color:var(--ac
 .erd-tbl.ea{border-color:var(--accent);z-index:20}
 .erd-tbl.hl-active{border-color:var(--accent);z-index:20;box-shadow:0 0 0 2px var(--accent-light),var(--shadow-hover)}
 .erd-tbl.hl-dim{opacity:.35}
+.erd-tbl.hl-pinned{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light),var(--shadow-hover);z-index:25}
 .erd-tbl .th2{padding:7px 10px;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:11px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:5px}
 .erd-tbl .th2 .dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
 .erd-tbl .td2{padding:3px 10px;font-size:9px;color:var(--text2);border-bottom:1px solid var(--line);line-height:1.4}
@@ -109,8 +131,23 @@ header .badge{display:inline-block;background:var(--accent-light);color:var(--ac
 .erd-tbl .tf .fk{color:var(--blue);font-weight:600;font-size:8px}
 .erd-tbl .tf .fn{color:var(--text)}
 .erd-svg{position:absolute;top:0;left:0;pointer-events:none;overflow:visible;z-index:1}
+.erd-hit-svg{position:absolute;top:0;left:0;overflow:visible;z-index:15;pointer-events:none}
+.erd-hit-svg .rel-line-hit{pointer-events:all}
 /* Improved line transitions */
 .rel-line{transition:opacity .18s,stroke-width .18s}
+.rel-line-hit{fill:none;stroke:transparent;stroke-width:14;cursor:pointer}
+.rel-line-hit:hover~.rel-line,.rel-line-hit:hover{opacity:1}
+.line-tooltip{
+  position:fixed;pointer-events:none;z-index:900;
+  background:var(--card);border:1.5px solid var(--line);
+  border-radius:8px;padding:8px 12px;box-shadow:var(--shadow-hover);
+  font-size:11px;font-family:'IBM Plex Mono',monospace;
+  opacity:0;transition:opacity .12s;white-space:nowrap;
+}
+.line-tooltip.show{opacity:1}
+.line-tooltip .lt-from{font-weight:700}
+.line-tooltip .lt-card{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:600;margin:0 2px}
+.line-tooltip .lt-rel{color:var(--text3);font-size:10px;margin:0 4px}
 .eov{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.3);z-index:999;display:none}
 .eov.show{display:block}
 .edp{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--card);border-radius:12px;border:1.5px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.15);z-index:1000;max-width:520px;width:92vw;max-height:80vh;overflow-y:auto;display:none;animation:fu .2s ease}
@@ -127,37 +164,94 @@ header .badge{display:inline-block;background:var(--accent-light);color:var(--ac
 .edp .er h4{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--text3);margin-bottom:6px}
 .edp .eri{font-size:11px;color:var(--text2);padding:3px 0;line-height:1.5;border-bottom:1px solid var(--bg2);display:flex;gap:5px;align-items:baseline}
 .edp .eri .ar{color:var(--accent);font-weight:600;font-size:13px;flex-shrink:0}
-@media(max-width:700px){
-.org-card{width:100%;max-width:300px}
-.dg{grid-template-columns:1fr}
-.dc{border-right:none!important}
-.tab-btn{padding:6px 10px;font-size:11px}
-}
+/* ── Business Operations ───────────────────────────────────────────── */
+.biz-wrap{width:100%;padding:0 0 60px}
+.biz-scenario{background:var(--card);border:1.5px solid var(--line);border-radius:14px;margin-bottom:32px;overflow:hidden;box-shadow:var(--shadow)}
+.biz-scenario-hd{padding:16px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line)}
+.biz-scenario-hd .bs-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.biz-scenario-hd .bs-title{font-size:16px;font-weight:700}
+.biz-scenario-hd .bs-sub{font-size:11px;color:var(--text2);margin-top:2px}
+.biz-scenario-hd .bs-trigger{margin-left:auto;font-size:10px;font-weight:600;padding:4px 10px;border-radius:6px;background:var(--bg2);color:var(--text3);flex-shrink:0}
+/* Status bar */
+.biz-status-flow{display:flex;gap:0;align-items:center;padding:10px 22px;background:var(--bg);border-bottom:1px solid var(--line);flex-wrap:wrap;gap:2px}
+.biz-status{padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;font-family:"IBM Plex Mono",monospace;letter-spacing:.3px;white-space:nowrap}
+.biz-status-arrow{color:var(--line);font-size:12px;padding:0 4px;flex-shrink:0}
+/* Swimlanes — vertical list layout */
+.biz-swimlanes{display:flex;flex-direction:column}
+.biz-lane{display:flex;align-items:stretch;border-bottom:1px solid var(--line)}
+.biz-lane:last-child{border-bottom:none}
+.biz-lane-label{width:180px;flex-shrink:0;padding:14px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);background:var(--bg);border-right:1px solid var(--line);display:flex;align-items:flex-start;gap:8px;padding-top:16px}
+.biz-lane-label .role-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.biz-lane-steps{flex:1;padding:14px 20px;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:4px}
+/* Step box — now unconstrained width, grows naturally */
+.biz-step{display:flex;align-items:center;gap:4px}
+.biz-step-box{background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:8px 13px;font-size:12px;font-weight:500;line-height:1.4;position:relative;cursor:default;transition:all .15s;white-space:nowrap}
+.biz-step-box:hover{box-shadow:var(--shadow-hover);transform:translateY(-1px);border-color:var(--accent)}
+.biz-step-box .step-tcode{font-family:"IBM Plex Mono",monospace;font-size:9px;font-weight:600;margin-top:3px;display:block;opacity:.7}
+.biz-step-box .step-num{position:absolute;top:-8px;left:-8px;width:18px;height:18px;border-radius:50%;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff}
+.biz-arrow{width:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--line);font-size:16px}
+.biz-decision-box{background:var(--bg);border:1.5px dashed var(--line);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;color:var(--text3);white-space:nowrap;cursor:default}
+/* Footer */
+.biz-footer{padding:10px 22px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--bg2);border-top:1px solid var(--line)}
+.biz-footer .kpi-chip{font-size:10px;padding:3px 9px;border-radius:4px;font-weight:500}
+.biz-footer .kpi-label{font-size:10px;color:var(--text3);margin-right:4px}
+/* mobile styles removed — desktop app */
 </style>
 </head>
 <body>
-<div class="page">
-<header>
-<h1>SAP S/4HANA — EAM / Plant Maintenance</h1>
-<p class="sub">Complete organizational, process & data model reference — 5W1H for blueprinting</p>
-<span class="badge">Click any element for full details</span>
-</header>
-<div class="tab-bar">
-<button class="tab-btn active" onclick="switchTab('org')">Org structure<span class="tc">8</span></button>
-<button class="tab-btn" onclick="switchTab('tech')">Technical objects<span class="tc">5</span></button>
-<button class="tab-btn" onclick="switchTab('proc')">Maint. processing<span class="tc">5</span></button>
-<button class="tab-btn" onclick="switchTab('prev')">Preventive maint.<span class="tc">4</span></button>
-<button class="tab-btn" onclick="switchTab('erd')">Table relationships<span class="tc">22</span></button>
+<!-- Top bar -->
+<div class="topbar">
+  <span style="font-size:22px;line-height:1">⚙️</span>
+  <div style="display:flex;flex-direction:column;gap:1px">
+    <h1>SAP S/4HANA — EAM / Plant Maintenance</h1>
+    <span class="sub">Organizational, process &amp; data model reference — 5W1H blueprinting</span>
+  </div>
+  <div class="spacer"></div>
+  <span class="badge">Click any element for details</span>
 </div>
-<div id="sec-org" class="section active"></div>
-<div id="sec-tech" class="section"></div>
-<div id="sec-proc" class="section"></div>
-<div id="sec-prev" class="section"></div>
-<div id="sec-erd" class="section"></div>
-<div class="detail-panel" id="detailPanel"></div>
+
+<!-- Shell -->
+<div class="shell">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-label">Master Data</div>
+    <button class="tab-btn active" onclick="switchTab('org')">
+      <span class="ti">🏛️</span>Org structure<span class="tc">8</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('tech')">
+      <span class="ti">⚙️</span>Technical objects<span class="tc">5</span>
+    </button>
+    <div class="sidebar-label">Processes</div>
+    <button class="tab-btn" onclick="switchTab('proc')">
+      <span class="ti">🔧</span>Maint. processing<span class="tc">5</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('prev')">
+      <span class="ti">📅</span>Preventive maint.<span class="tc">4</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('biz')">
+      <span class="ti">🏭</span>Business operations<span class="tc">4</span>
+    </button>
+    <div class="sidebar-label">Reference</div>
+    <button class="tab-btn" onclick="switchTab('erd')">
+      <span class="ti">🗄️</span>Table relationships<span class="tc">22</span>
+    </button>
+  </nav>
+
+  <!-- Content -->
+  <div class="content" id="mainContent">
+    <div id="sec-org" class="section active"></div>
+    <div id="sec-tech" class="section"></div>
+    <div id="sec-proc" class="section"></div>
+    <div id="sec-prev" class="section"></div>
+    <div id="sec-erd" class="section"></div>
+    <div id="sec-biz" class="section"></div>
+    <div class="detail-panel" id="detailPanel"></div>
+  </div>
+</div>
+
 <div class="eov" id="eov" onclick="closeErd()"></div>
 <div class="edp" id="edp"></div>
-</div>
 <script>
 const COLORS={purple:{bg:"var(--purple-l)",fg:"var(--purple)",dk:"var(--purple-d)"},blue:{bg:"var(--blue-l)",fg:"var(--blue)",dk:"var(--blue-d)"},teal:{bg:"var(--teal-l)",fg:"var(--teal)",dk:"var(--teal-d)"},coral:{bg:"var(--coral-l)",fg:"var(--coral)",dk:"var(--coral-d)"},green:{bg:"var(--green-l)",fg:"var(--green)",dk:"var(--green-d)"},amber:{bg:"var(--amber-l)",fg:"var(--amber)",dk:"var(--amber-d)"},pink:{bg:"var(--pink-l)",fg:"var(--pink)",dk:"var(--pink-d)"},red:{bg:"var(--red-l)",fg:"var(--red)",dk:"var(--red-d)"}};
 
@@ -188,39 +282,40 @@ meas_point:{id:"meas_point",title:"Measurement Point",icon:"\u{1F4CF}",color:"am
 
 const ERD={
 T000:{name:"T000",desc:"Client master",domain:"org",color:"teal",fields:[{n:"MANDT",k:"PK"},{n:"MTEXT",k:""},{n:"CCCATEGORY",k:""}],rels:["Parent of all tables via MANDT"]},
-T001:{name:"T001",desc:"Company codes",domain:"org",color:"teal",fields:[{n:"BUKRS",k:"PK"},{n:"MANDT",k:"FK"},{n:"BUTXT",k:""},{n:"WAERS",k:""}],rels:["\u2192 T000 via MANDT","\u2192 T001W via BUKRS"]},
-T001W:{name:"T001W",desc:"Plants / branches",domain:"org",color:"teal",fields:[{n:"WERKS",k:"PK"},{n:"BUKRS",k:"FK"},{n:"NAME1",k:""},{n:"FABKL",k:""}],rels:["\u2192 T001 via BUKRS","\u2192 T001L, CRHD, T024I via WERKS"]},
-T001L:{name:"T001L",desc:"Storage locations",domain:"org",color:"teal",fields:[{n:"WERKS",k:"PK+FK"},{n:"LGORT",k:"PK"},{n:"LGOBE",k:""}],rels:["\u2192 T001W via WERKS","\u2192 MARD via WERKS+LGORT"]},
-T024I:{name:"T024I",desc:"Planner groups (PM)",domain:"org",color:"teal",fields:[{n:"IWERK",k:"PK+FK"},{n:"INGRP",k:"PK"},{n:"INNAM",k:""}],rels:["\u2192 T001W via IWERK"]},
-CRHD:{name:"CRHD",desc:"Work center header",domain:"org",color:"teal",fields:[{n:"OBJID",k:"PK"},{n:"WERKS",k:"FK"},{n:"ARBPL",k:""},{n:"VERWE",k:""}],rels:["\u2192 T001W via WERKS","\u2192 CRCO via OBJID","\u2192 AFVC via ARBID"]},
-CRCO:{name:"CRCO",desc:"Work center cost assignment",domain:"org",color:"teal",fields:[{n:"OBJID",k:"PK+FK"},{n:"KOSTL",k:"FK"},{n:"LSTAR",k:""}],rels:["\u2192 CRHD via OBJID"]},
-MARD:{name:"MARD",desc:"Material stock per stor. loc.",domain:"org",color:"teal",fields:[{n:"MATNR",k:"PK"},{n:"WERKS",k:"PK+FK"},{n:"LGORT",k:"PK+FK"},{n:"LABST",k:""}],rels:["\u2192 T001L via WERKS+LGORT"]},
-IFLO:{name:"IFLO",desc:"Functional location master",domain:"tech",color:"purple",fields:[{n:"TPLNR",k:"PK"},{n:"IWERK",k:"FK"},{n:"INGRP",k:"FK"},{n:"SWERK",k:"FK"}],rels:["\u2192 T001W via IWERK/SWERK","\u2192 T024I via IWERK+INGRP","\u2192 ILOA, EQUI"]},
-EQUI:{name:"EQUI",desc:"Equipment master",domain:"tech",color:"purple",fields:[{n:"EQUNR",k:"PK"},{n:"EQTYP",k:""},{n:"EQKTX",k:""},{n:"HERST",k:""},{n:"SERGE",k:""}],rels:["\u2192 ILOA via EQUNR","\u2192 STKO (Equipment BOM)","\u2192 QMEL, AUFK via EQUNR"]},
-ILOA:{name:"ILOA",desc:"PM object location & acct",domain:"tech",color:"purple",fields:[{n:"ILOAN",k:"PK"},{n:"TPLNR",k:"FK"},{n:"EQUNR",k:"FK"},{n:"SWERK",k:"FK"},{n:"IWERK",k:"FK"},{n:"KOSTL",k:"FK"}],rels:["\u2192 IFLO via TPLNR","\u2192 EQUI via EQUNR","\u2192 AUFK via ILOAN"]},
-STKO:{name:"STKO",desc:"BOM header",domain:"tech",color:"purple",fields:[{n:"STLNR",k:"PK"},{n:"STLAL",k:"PK"},{n:"STLTY",k:""}],rels:["\u2192 STPO via STLNR","\u2192 EQUI/IFLO (via MAST)"]},
-STPO:{name:"STPO",desc:"BOM items (components)",domain:"tech",color:"purple",fields:[{n:"STLNR",k:"PK+FK"},{n:"STLKN",k:"PK"},{n:"IDNRK",k:"FK"},{n:"MENGE",k:""}],rels:["\u2192 STKO via STLNR"]},
-KLAH:{name:"KLAH",desc:"Class header",domain:"tech",color:"purple",fields:[{n:"CLINT",k:"PK"},{n:"CLASS",k:""},{n:"KLART",k:""}],rels:["\u2192 KSSK via CLINT"]},
-KSSK:{name:"KSSK",desc:"Object \u2194 class assignment",domain:"tech",color:"purple",fields:[{n:"OBJEK",k:"PK"},{n:"CLINT",k:"PK+FK"},{n:"KLART",k:""}],rels:["\u2192 KLAH via CLINT","\u2192 EQUI/IFLO via OBJEK"]},
-QMEL:{name:"QMEL",desc:"Notification header",domain:"proc",color:"blue",fields:[{n:"QMNUM",k:"PK"},{n:"QMART",k:""},{n:"EQUNR",k:"FK"},{n:"TPLNR",k:"FK"},{n:"AUFNR",k:"FK"}],rels:["\u2192 EQUI via EQUNR","\u2192 IFLO via TPLNR","\u2192 AUFK via AUFNR","\u2192 QMFE via QMNUM"]},
-QMFE:{name:"QMFE",desc:"Notification items (defects)",domain:"proc",color:"blue",fields:[{n:"QMNUM",k:"PK+FK"},{n:"FEESSION",k:"PK"},{n:"FEGRP",k:""},{n:"FECOD",k:""}],rels:["\u2192 QMEL via QMNUM"]},
-AUFK:{name:"AUFK",desc:"Order header",domain:"proc",color:"blue",fields:[{n:"AUFNR",k:"PK"},{n:"AUART",k:""},{n:"EQUNR",k:"FK"},{n:"TPLNR",k:"FK"},{n:"IWERK",k:"FK"},{n:"ILOAN",k:"FK"}],rels:["\u2192 EQUI, IFLO, ILOA","\u2192 AFKO, AFVC, RESB, AFRU","\u2192 COBK/COEP (settlement)"]},
-AFKO:{name:"AFKO",desc:"Order master data",domain:"proc",color:"blue",fields:[{n:"AUFNR",k:"PK+FK"},{n:"STLNR",k:"FK"},{n:"PLNNR",k:"FK"},{n:"GSTRP",k:""}],rels:["\u2192 AUFK via AUFNR","\u2192 STKO via STLNR","\u2192 PLKO via PLNNR"]},
-AFVC:{name:"AFVC",desc:"Order operations",domain:"proc",color:"blue",fields:[{n:"AUFPL",k:"PK"},{n:"APLZL",k:"PK"},{n:"ARBID",k:"FK"},{n:"LTXA1",k:""}],rels:["\u2192 AUFK via AUFPL","\u2192 CRHD via ARBID","\u2192 AFRU via AUFPL+APLZL"]},
-RESB:{name:"RESB",desc:"Order material reservations",domain:"proc",color:"blue",fields:[{n:"RSNUM",k:"PK"},{n:"RSPOS",k:"PK"},{n:"AUFNR",k:"FK"},{n:"MATNR",k:"FK"},{n:"WERKS",k:"FK"},{n:"LGORT",k:"FK"}],rels:["\u2192 AUFK via AUFNR","\u2192 MARD via MATNR+WERKS+LGORT"]},
-AFRU:{name:"AFRU",desc:"Order confirmations",domain:"proc",color:"blue",fields:[{n:"RUESSION",k:"PK"},{n:"AUFNR",k:"FK"},{n:"AUFPL",k:"FK"},{n:"ISMNW",k:""},{n:"BUDAT",k:""}],rels:["\u2192 AUFK via AUFNR","\u2192 AFVC via AUFPL+APLZL"]},
-COBK:{name:"COBK",desc:"CO document header",domain:"proc",color:"blue",fields:[{n:"BESSION",k:"PK"},{n:"BELNR",k:""},{n:"KOKRS",k:""}],rels:["\u2192 COEP via BELNR"]},
-COEP:{name:"COEP",desc:"CO document line items",domain:"proc",color:"blue",fields:[{n:"BESSION",k:"PK+FK"},{n:"BUZEI",k:"PK"},{n:"OBJNR",k:"FK"},{n:"WKGBTR",k:""}],rels:["\u2192 COBK via BELNR","\u2192 AUFK via OBJNR"]},
-PLKO:{name:"PLKO",desc:"Task list header",domain:"prev",color:"amber",fields:[{n:"PLNTY",k:"PK"},{n:"PLNNR",k:"PK"},{n:"PLNAL",k:"PK"},{n:"WERKS",k:"FK"}],rels:["\u2192 T001W via WERKS","\u2192 PLPO via PLNNR","\u2192 MPLA via plan items"]},
-PLPO:{name:"PLPO",desc:"Task list operations",domain:"prev",color:"amber",fields:[{n:"PLNTY",k:"PK+FK"},{n:"PLNNR",k:"PK+FK"},{n:"PLNKN",k:"PK"},{n:"ARBID",k:"FK"},{n:"LTXA1",k:""}],rels:["\u2192 PLKO via PLNTY+PLNNR","\u2192 CRHD via ARBID","\u2192 PLMZ (materials)"]},
-PLMZ:{name:"PLMZ",desc:"Task list materials",domain:"prev",color:"amber",fields:[{n:"PLNTY",k:"PK+FK"},{n:"PLNNR",k:"PK+FK"},{n:"PLNKN",k:"PK+FK"},{n:"MATNR",k:"FK"}],rels:["\u2192 PLPO via keys"]},
-MPLA:{name:"MPLA",desc:"Maint. plan header",domain:"prev",color:"amber",fields:[{n:"WARPL",k:"PK"},{n:"STRAT",k:"FK"},{n:"ABESSION",k:""}],rels:["\u2192 STRA via STRAT","\u2192 MPOS, MHIS via WARPL"]},
-MPOS:{name:"MPOS",desc:"Maint. plan items",domain:"prev",color:"amber",fields:[{n:"WARPL",k:"PK+FK"},{n:"WAESSION",k:"PK"},{n:"EQUNR",k:"FK"},{n:"TPLNR",k:"FK"},{n:"PLNNR",k:"FK"}],rels:["\u2192 MPLA via WARPL","\u2192 EQUI, IFLO, PLKO"]},
-MHIS:{name:"MHIS",desc:"Plan call history",domain:"prev",color:"amber",fields:[{n:"WARPL",k:"PK+FK"},{n:"ABESSION",k:"PK"},{n:"AUFNR",k:"FK"}],rels:["\u2192 MPLA via WARPL","\u2192 AUFK via AUFNR"]},
-STRA:{name:"STRA",desc:"Maint. strategy header",domain:"prev",color:"amber",fields:[{n:"STRAT",k:"PK"},{n:"KTEXT",k:""}],rels:["\u2192 STRAT (packages)","\u2192 MPLA via STRAT"]},
-STRAT_P:{name:"STRAT",desc:"Strategy packages",domain:"prev",color:"amber",fields:[{n:"STRAT",k:"PK+FK"},{n:"PAESSION",k:"PK"},{n:"ESSION",k:""}],rels:["\u2192 STRA via STRAT"]},
-IMPTT:{name:"IMPTT",desc:"Measurement points",domain:"prev",color:"amber",fields:[{n:"POINT",k:"PK"},{n:"MPOBJ",k:"FK"},{n:"ATNAM",k:""}],rels:["\u2192 EQUI/IFLO via MPOBJ","\u2192 IMRG via POINT"]},
-IMRG:{name:"IMRG",desc:"Measurement readings",domain:"prev",color:"amber",fields:[{n:"MDESSION",k:"PK"},{n:"POINT",k:"FK"},{n:"READG",k:""},{n:"IDATE",k:""}],rels:["\u2192 IMPTT via POINT"]}
+T001:{name:"T001",desc:"Company codes",domain:"org",color:"teal",fields:[{n:"MANDT",k:"PK+FK"},{n:"BUKRS",k:"PK"},{n:"BUTXT",k:""},{n:"WAERS",k:""}],rels:["\u2192 T000 via MANDT","\u2192 T001W via BUKRS"]},
+T001W:{name:"T001W",desc:"Plants / branches",domain:"org",color:"teal",fields:[{n:"MANDT",k:"PK+FK"},{n:"WERKS",k:"PK"},{n:"BUKRS",k:"FK"},{n:"NAME1",k:""},{n:"FABKL",k:""}],rels:["\u2192 T001 via BUKRS","\u2192 T001L, CRHD, T024I via WERKS"]},
+T001L:{name:"T001L",desc:"Storage locations",domain:"org",color:"teal",fields:[{n:"MANDT",k:"PK+FK"},{n:"WERKS",k:"PK+FK"},{n:"LGORT",k:"PK"},{n:"LGOBE",k:""}],rels:["\u2192 T001W via WERKS","\u2192 MARD via WERKS+LGORT"]},
+T024I:{name:"T024I",desc:"Planner groups (PM)",domain:"org",color:"teal",fields:[{n:"MANDT",k:"PK+FK"},{n:"IWERK",k:"PK+FK"},{n:"INGRP",k:"PK"},{n:"INNAM",k:""}],rels:["\u2192 T001W via IWERK (planning plant)"]},
+CRHD:{name:"CRHD",desc:"Work center header",domain:"org",color:"teal",fields:[{n:"MANDT",k:"PK+FK"},{n:"OBJID",k:"PK"},{n:"WERKS",k:"FK"},{n:"ARBPL",k:""},{n:"VERWE",k:""}],rels:["\u2192 T001W via WERKS","\u2192 CRCO via OBJID","\u2192 AFVC via ARBID (object ID)"]},
+CRCO:{name:"CRCO",desc:"Work center cost assignment",domain:"org",color:"teal",fields:[{n:"MANDT",k:"PK+FK"},{n:"OBJID",k:"PK+FK"},{n:"LSTAR",k:"PK"},{n:"KOSTL",k:"FK"},{n:"KSTAR",k:""}],rels:["\u2192 CRHD via OBJID"]},
+MARD:{name:"MARD",desc:"Material stock per stor. loc.",domain:"org",color:"teal",fields:[{n:"MANDT",k:"PK+FK"},{n:"MATNR",k:"PK"},{n:"WERKS",k:"PK+FK"},{n:"LGORT",k:"PK+FK"},{n:"LABST",k:""},{n:"EINME",k:""}],rels:["\u2192 T001L via WERKS+LGORT"]},
+IFLO:{name:"IFLO",desc:"Functional location master",domain:"tech",color:"purple",fields:[{n:"MANDT",k:"PK+FK"},{n:"TPLNR",k:"PK"},{n:"IWERK",k:"FK"},{n:"SWERK",k:"FK"},{n:"INGRP",k:"FK"},{n:"FLTYP",k:""}],rels:["\u2192 T001W via IWERK (planning plant)","\u2192 T001W via SWERK (maint. plant)","\u2192 T024I via IWERK+INGRP","\u2192 ILOA via TPLNR (location data)","\u2192 EQUI via TPLNR (installed equipment)"]},
+EQUI:{name:"EQUI",desc:"Equipment master",domain:"tech",color:"purple",fields:[{n:"MANDT",k:"PK+FK"},{n:"EQUNR",k:"PK"},{n:"EQTYP",k:""},{n:"EQKTX",k:""},{n:"TPLNR",k:"FK"},{n:"IWERK",k:"FK"},{n:"SWERK",k:"FK"},{n:"INGRP",k:"FK"},{n:"HERST",k:""}],rels:["\u2192 IFLO via TPLNR (installed at FL)","\u2192 T001W via IWERK/SWERK","\u2192 ILOA via EQUNR (location & accounting)","\u2192 MAST \u2192 STKO (Equipment BOM)","\u2192 QMEL, AUFK via EQUNR"]},
+ILOA:{name:"ILOA",desc:"PM object location & acct.",domain:"tech",color:"purple",fields:[{n:"MANDT",k:"PK+FK"},{n:"ILOAN",k:"PK"},{n:"TPLNR",k:"FK"},{n:"EQUNR",k:"FK"},{n:"SWERK",k:"FK"},{n:"IWERK",k:"FK"},{n:"KOSTL",k:"FK"},{n:"BUKRS",k:"FK"}],rels:["\u2192 IFLO via TPLNR","\u2192 EQUI via EQUNR","\u2192 AUFK via OBJNR (object number link)"]},
+MAST:{name:"MAST",desc:"Material BOM link (object\u2194BOM)",domain:"tech",color:"purple",fields:[{n:"MANDT",k:"PK+FK"},{n:"MATNR",k:"PK"},{n:"WERKS",k:"PK+FK"},{n:"STLAN",k:"PK"},{n:"STLNR",k:"FK"},{n:"STLAL",k:"FK"}],rels:["\u2192 STKO via STLNR+STLAL","\u2192 EQUI/IFLO via object assignment"]},
+STKO:{name:"STKO",desc:"BOM header",domain:"tech",color:"purple",fields:[{n:"MANDT",k:"PK+FK"},{n:"STLNR",k:"PK"},{n:"STLAL",k:"PK"},{n:"STLTY",k:""},{n:"BMENG",k:""}],rels:["\u2192 MAST via STLNR+STLAL","\u2192 STPO via STLNR+STLAL"]},
+STPO:{name:"STPO",desc:"BOM items (components)",domain:"tech",color:"purple",fields:[{n:"MANDT",k:"PK+FK"},{n:"STLNR",k:"PK+FK"},{n:"STLAL",k:"PK+FK"},{n:"STLKN",k:"PK"},{n:"IDNRK",k:"FK"},{n:"MENGE",k:""}],rels:["\u2192 STKO via STLNR+STLAL"]},
+KLAH:{name:"KLAH",desc:"Class header",domain:"tech",color:"purple",fields:[{n:"MANDT",k:"PK+FK"},{n:"CLINT",k:"PK"},{n:"CLASS",k:""},{n:"KLART",k:""}],rels:["\u2192 KSSK via CLINT","\u2192 CABN via class characteristics"]},
+KSSK:{name:"KSSK",desc:"Object \u2194 class assignment",domain:"tech",color:"purple",fields:[{n:"MANDT",k:"PK+FK"},{n:"OBJEK",k:"PK"},{n:"CLINT",k:"PK+FK"},{n:"KLART",k:"PK"}],rels:["\u2192 KLAH via CLINT","\u2192 EQUI/IFLO via OBJEK (object key)"]},
+QMEL:{name:"QMEL",desc:"Notification header",domain:"proc",color:"blue",fields:[{n:"MANDT",k:"PK+FK"},{n:"QMNUM",k:"PK"},{n:"QMART",k:""},{n:"EQUNR",k:"FK"},{n:"TPLNR",k:"FK"},{n:"AUFNR",k:"FK"},{n:"QMCOD",k:""}],rels:["\u2192 EQUI via EQUNR","\u2192 IFLO via TPLNR","\u2192 AUFK via AUFNR (assigned order)","\u2192 QMFE via QMNUM (defect items)"]},
+QMFE:{name:"QMFE",desc:"Notification items (defects)",domain:"proc",color:"blue",fields:[{n:"MANDT",k:"PK+FK"},{n:"QMNUM",k:"PK+FK"},{n:"FEZAE",k:"PK"},{n:"FEGRP",k:""},{n:"FECOD",k:""}],rels:["\u2192 QMEL via QMNUM"]},
+AUFK:{name:"AUFK",desc:"Order header",domain:"proc",color:"blue",fields:[{n:"MANDT",k:"PK+FK"},{n:"AUFNR",k:"PK"},{n:"AUART",k:""},{n:"EQUNR",k:"FK"},{n:"TPLNR",k:"FK"},{n:"IWERK",k:"FK"},{n:"OBJNR",k:"FK"}],rels:["\u2192 EQUI via EQUNR","\u2192 IFLO via TPLNR","\u2192 ILOA via OBJNR (location & acct.)","\u2192 AFKO via AUFNR (scheduling)","\u2192 AFVC via AUFPL (operations)","\u2192 RESB via AUFNR (reservations)","\u2192 COBK/COEP via OBJNR (CO settlement)"]},
+AFKO:{name:"AFKO",desc:"Order scheduling data",domain:"proc",color:"blue",fields:[{n:"MANDT",k:"PK+FK"},{n:"AUFNR",k:"PK+FK"},{n:"AUFPL",k:"FK"},{n:"STLNR",k:"FK"},{n:"PLNNR",k:"FK"},{n:"GSTRP",k:""},{n:"GLTRP",k:""}],rels:["\u2192 AUFK via AUFNR","\u2192 STKO via STLNR (BOM used)","\u2192 PLKO via PLNTY+PLNNR (task list)"]},
+AFVC:{name:"AFVC",desc:"Order operations",domain:"proc",color:"blue",fields:[{n:"MANDT",k:"PK+FK"},{n:"AUFPL",k:"PK"},{n:"APLZL",k:"PK"},{n:"AUFNR",k:"FK"},{n:"ARBID",k:"FK"},{n:"LTXA1",k:""},{n:"ARBEI",k:""}],rels:["\u2192 AUFK via AUFNR","\u2192 CRHD via ARBID (work center obj. ID)","\u2192 AFRU via AUFPL+APLZL (confirmations)"]},
+RESB:{name:"RESB",desc:"Order material reservations",domain:"proc",color:"blue",fields:[{n:"MANDT",k:"PK+FK"},{n:"RSNUM",k:"PK"},{n:"RSPOS",k:"PK"},{n:"AUFNR",k:"FK"},{n:"MATNR",k:"FK"},{n:"WERKS",k:"FK"},{n:"LGORT",k:"FK"},{n:"BDMNG",k:""}],rels:["\u2192 AUFK via AUFNR","\u2192 MARD via MATNR+WERKS+LGORT"]},
+AFRU:{name:"AFRU",desc:"Order confirmations",domain:"proc",color:"blue",fields:[{n:"MANDT",k:"PK+FK"},{n:"RUECK",k:"PK"},{n:"AUFNR",k:"FK"},{n:"AUFPL",k:"FK"},{n:"APLZL",k:"FK"},{n:"ARBEI",k:""},{n:"BUDAT",k:""}],rels:["\u2192 AUFK via AUFNR","\u2192 AFVC via AUFPL+APLZL (operation confirmed)"]},
+COBK:{name:"COBK",desc:"CO document header",domain:"proc",color:"blue",fields:[{n:"MANDT",k:"PK+FK"},{n:"KOKRS",k:"PK"},{n:"BELNR",k:"PK"},{n:"GJAHR",k:"PK"},{n:"BLDAT",k:""}],rels:["\u2192 COEP via KOKRS+BELNR+GJAHR","\u2192 AUFK via OBJNR on COEP"]},
+COEP:{name:"COEP",desc:"CO document line items",domain:"proc",color:"blue",fields:[{n:"MANDT",k:"PK+FK"},{n:"KOKRS",k:"PK+FK"},{n:"BELNR",k:"PK+FK"},{n:"GJAHR",k:"PK+FK"},{n:"BUZEI",k:"PK"},{n:"OBJNR",k:"FK"},{n:"WKGBTR",k:""}],rels:["\u2192 COBK via KOKRS+BELNR+GJAHR","\u2192 AUFK via OBJNR (order object number)"]},
+PLKO:{name:"PLKO",desc:"Task list header",domain:"prev",color:"amber",fields:[{n:"MANDT",k:"PK+FK"},{n:"PLNTY",k:"PK"},{n:"PLNNR",k:"PK"},{n:"PLNAL",k:"PK"},{n:"WERKS",k:"FK"},{n:"STATU",k:""}],rels:["\u2192 T001W via WERKS (planning plant)","\u2192 PLPO via PLNTY+PLNNR+PLNAL","\u2192 MPOS via PLNNR (assigned to plan items)"]},
+PLPO:{name:"PLPO",desc:"Task list operations",domain:"prev",color:"amber",fields:[{n:"MANDT",k:"PK+FK"},{n:"PLNTY",k:"PK+FK"},{n:"PLNNR",k:"PK+FK"},{n:"PLNAL",k:"PK+FK"},{n:"PLNKN",k:"PK"},{n:"ARBID",k:"FK"},{n:"LTXA1",k:""},{n:"ARBEI",k:""}],rels:["\u2192 PLKO via PLNTY+PLNNR+PLNAL","\u2192 CRHD via ARBID (work center)","\u2192 PLMZ via PLNTY+PLNNR+PLNKN (materials)"]},
+PLMZ:{name:"PLMZ",desc:"Task list component allocation",domain:"prev",color:"amber",fields:[{n:"MANDT",k:"PK+FK"},{n:"PLNTY",k:"PK+FK"},{n:"PLNNR",k:"PK+FK"},{n:"PLNAL",k:"PK+FK"},{n:"PLNKN",k:"PK+FK"},{n:"ZAEHL",k:"PK"},{n:"MATNR",k:"FK"}],rels:["\u2192 PLPO via PLNTY+PLNNR+PLNAL+PLNKN"]},
+MPLA:{name:"MPLA",desc:"Maint. plan header",domain:"prev",color:"amber",fields:[{n:"MANDT",k:"PK+FK"},{n:"WARPL",k:"PK"},{n:"IWERK",k:"FK"},{n:"STRAT",k:"FK"},{n:"ZYKL1",k:""},{n:"MPTYP",k:""}],rels:["\u2192 T001W via IWERK (planning plant)","\u2192 STRA via STRAT (strategy)","\u2192 MPOS via WARPL (plan items)","\u2192 MHIS via WARPL (call history)"]},
+MPOS:{name:"MPOS",desc:"Maint. plan items",domain:"prev",color:"amber",fields:[{n:"MANDT",k:"PK+FK"},{n:"WARPL",k:"PK+FK"},{n:"WPOS",k:"PK"},{n:"EQUNR",k:"FK"},{n:"TPLNR",k:"FK"},{n:"PLNTY",k:"FK"},{n:"PLNNR",k:"FK"}],rels:["\u2192 MPLA via WARPL","\u2192 EQUI via EQUNR (maintained object)","\u2192 IFLO via TPLNR (maintained object)","\u2192 PLKO via PLNTY+PLNNR (task list)"]},
+MHIS:{name:"MHIS",desc:"Maint. plan call history",domain:"prev",color:"amber",fields:[{n:"MANDT",k:"PK+FK"},{n:"WARPL",k:"PK+FK"},{n:"WPOS",k:"PK+FK"},{n:"ZAEHL",k:"PK"},{n:"AUFNR",k:"FK"},{n:"NPLDA",k:""}],rels:["\u2192 MPLA via WARPL","\u2192 AUFK via AUFNR (generated order)"]},
+STRA:{name:"STRA",desc:"Maint. strategy header",domain:"prev",color:"amber",fields:[{n:"MANDT",k:"PK+FK"},{n:"STRAT",k:"PK"},{n:"KTEXT",k:""},{n:"ZEINH",k:""}],rels:["\u2192 T356 via STRAT (strategy packages)","\u2192 MPLA via STRAT"]},
+STRAT_P:{name:"T356",desc:"Strategy packages (cycles)",domain:"prev",color:"amber",fields:[{n:"MANDT",k:"PK+FK"},{n:"STRAT",k:"PK+FK"},{n:"PAKNO",k:"PK"},{n:"ZYKL1",k:""},{n:"ZEINH",k:""}],rels:["\u2192 STRA via STRAT"]},
+IMPTT:{name:"IMPTT",desc:"Measurement points",domain:"prev",color:"amber",fields:[{n:"MANDT",k:"PK+FK"},{n:"POINT",k:"PK"},{n:"MPOBJ",k:"FK"},{n:"MPTYP",k:""},{n:"ATNAM",k:""},{n:"PTOBJTYPE",k:""}],rels:["\u2192 EQUI/IFLO via MPOBJ (measured object)","\u2192 IMRG via POINT (readings)"]},
+IMRG:{name:"IMRG",desc:"Measurement documents (readings)",domain:"prev",color:"amber",fields:[{n:"MANDT",k:"PK+FK"},{n:"IMRKEY",k:"PK"},{n:"POINT",k:"FK"},{n:"READG",k:""},{n:"IDATE",k:""},{n:"IZEIT",k:""}],rels:["\u2192 IMPTT via POINT"]}
 };
 
 /* ============================================================ HELPERS */
@@ -229,32 +324,394 @@ return '<div class="org-card" data-id="'+d.id+'" onclick="showDetail(\''+d.id+'\
 function connV(l){return '<div class="connector-v">'+(l?'<div class="label">'+l+'</div>':'')+'</div>';}
 function spread(n,w){var s=w||620,h=44,m=s/2,p=[];if(n===3)p=[s*.16,s*.5,s*.84];else if(n===2)p=[s*.28,s*.72];var li=p.map(function(x){return '<line x1="'+m+'" y1="0" x2="'+x+'" y2="'+(h-8)+'" stroke="var(--line)" stroke-width="2"/><polygon points="'+(x-5)+','+(h-8)+' '+(x+5)+','+(h-8)+' '+x+','+h+'" fill="var(--line)"/>';}).join('');return '<svg width="'+s+'" height="'+h+'" viewBox="0 0 '+s+' '+h+'" style="display:block;margin:0 auto">'+li+'</svg>';}
 
-/* ============================================================ SECTION RENDERS */
-function renderOrg(){return '<p class="section-desc">The foundational org structure of SAP EAM/PM — from Client down to execution-level elements.</p><div class="legend-bar"><span class="tag" style="background:var(--purple-l);color:var(--purple)">&#x25cf; System</span><span class="tag" style="background:var(--blue-l);color:var(--blue)">&#x25cf; Financial</span><span class="tag" style="background:var(--teal-l);color:var(--teal)">&#x25cf; Operational</span><span class="tag" style="background:var(--coral-l);color:var(--coral)">&#x25cf; Maint. roles</span><span class="tag" style="background:var(--green-l);color:var(--green)">&#x25cf; Inventory</span><span class="tag" style="background:var(--amber-l);color:var(--amber)">&#x25cf; Planning</span><span class="tag" style="background:var(--pink-l);color:var(--pink)">&#x25cf; Execution</span></div><div class="diagram"><div class="tier">'+card('client')+'</div>'+connV('1 : N')+'<div class="tier">'+card('companycode')+'</div>'+connV('1 : N')+'<div class="tier">'+card('plant')+'</div>'+connV('')+'<div class="dashed-group" style="max-width:560px"><div class="gl">A plant can serve both roles simultaneously</div><div class="it">'+card('maint_plan_plant')+card('maint_plant')+'</div></div><div style="height:8px"></div>'+spread(3,620)+'<div class="tier" style="max-width:820px">'+card('storage_loc')+card('planner_group')+card('work_center')+'</div></div>';}
-function renderTech(){return '<p class="section-desc">Technical objects — the master data backbone defining WHAT is maintained, WHERE, and its specifications.</p><div class="legend-bar"><span class="tag" style="background:var(--purple-l);color:var(--purple)">&#x25cf; Location</span><span class="tag" style="background:var(--blue-l);color:var(--blue)">&#x25cf; Assets</span><span class="tag" style="background:var(--teal-l);color:var(--teal)">&#x25cf; Parts</span><span class="tag" style="background:var(--coral-l);color:var(--coral)">&#x25cf; Traceability</span><span class="tag" style="background:var(--green-l);color:var(--green)">&#x25cf; Specs</span></div><div class="diagram"><div class="dashed-group" style="max-width:560px"><div class="gl">Assigned to Plant / Maint. Plant / Planning Plant</div><div class="it" style="flex-direction:column;align-items:center;gap:0"><div class="tier">'+card('func_loc')+'</div>'+connV('installed at')+'<div class="tier">'+card('equipment')+'</div></div></div><div style="height:8px"></div>'+spread(3,620)+'<div class="tier" style="max-width:820px">'+card('bom')+card('serial_num')+card('class_char')+'</div></div>';}
-function renderProc(){return '<p class="section-desc">End-to-end corrective maintenance process — from detection through execution to financial settlement.</p><div class="legend-bar"><span class="tag" style="background:var(--purple-l);color:var(--purple)">&#x25cf; Detection</span><span class="tag" style="background:var(--blue-l);color:var(--blue)">&#x25cf; Authorization</span><span class="tag" style="background:var(--teal-l);color:var(--teal)">&#x25cf; Execution</span><span class="tag" style="background:var(--amber-l);color:var(--amber)">&#x25cf; Financial</span><span class="tag" style="background:var(--coral-l);color:var(--coral)">&#x25cf; Analytics</span></div><div class="diagram"><div class="flow-row">'+card('notification')+'<span class="fa">&#x2192;</span>'+card('maint_order')+'</div><div style="height:6px"></div><div class="flow-row">'+card('confirmation')+'<span class="fa">&#x2192;</span>'+card('settlement')+'</div><div style="height:6px"></div>'+connV('')+'<div class="tier">'+card('maint_history')+'</div></div>';}
-function renderPrev(){return '<p class="section-desc">Preventive & condition-based maintenance — reusable task lists, strategies, and automated scheduling.</p><div class="legend-bar"><span class="tag" style="background:var(--purple-l);color:var(--purple)">&#x25cf; Procedures</span><span class="tag" style="background:var(--blue-l);color:var(--blue)">&#x25cf; Scheduling</span><span class="tag" style="background:var(--teal-l);color:var(--teal)">&#x25cf; Intervals</span><span class="tag" style="background:var(--amber-l);color:var(--amber)">&#x25cf; Condition</span></div><div class="diagram"><div class="tier">'+card('task_list')+card('maint_strategy')+'</div><div style="height:4px"></div><svg width="440" height="44" viewBox="0 0 440 44" style="display:block;margin:0 auto"><line x1="130" y1="0" x2="220" y2="36" stroke="var(--line)" stroke-width="2"/><polygon points="215,36 225,36 220,44" fill="var(--line)"/><line x1="310" y1="0" x2="220" y2="36" stroke="var(--line)" stroke-width="2"/><polygon points="215,36 225,36 220,44" fill="var(--line)"/></svg><div class="tier">'+card('maint_plan_prev')+'</div>'+connV('generates')+'<div class="dashed-group" style="max-width:400px"><div class="gl">Output &#x2192; Orders / Notifications</div><div style="text-align:center;padding:10px 0;font-size:12px;color:var(--text2)">Orders auto-created by IP10/IP30 deadline monitoring</div></div><div style="height:12px"></div>'+connV('feeds into')+'<div class="tier">'+card('meas_point')+'</div><div style="margin-top:8px;text-align:center;font-size:11px;color:var(--text3)">Counter readings drive performance-based plan scheduling</div></div>';}
+/* ============================================================ SECTION RENDERS — shared canvas engine */
+
+var CC_W=220,CC_H=110;
+
+function ccCard(id,pos){
+  var d=ALL[id];if(!d)return '';
+  var c=COLORS[d.color],p=pos[id];if(!p)return '';
+  var onclick='onclick="showDetail(\'' + id + '\')"';
+  return '<div class="erd-tbl cc-card" style="left:'+p.x+'px;top:'+p.y+'px;width:'+CC_W+'px" '+onclick+' data-t="'+id+'">'+
+    '<div class="th2" style="background:'+c.bg+';color:'+c.fg+'"><div class="dot" style="background:'+c.fg+'"></div>'+
+    '<span style="font-size:11px">'+d.icon+'</span> '+d.title+'</div>'+
+    '<div class="td2" style="font-size:10px;padding:5px 10px;line-height:1.5;color:var(--text2)">'+d.what.split('.')[0]+'.</div>'+
+    '<div class="td2" style="font-family:IBM Plex Mono,monospace;font-size:9px;padding:3px 10px 6px;color:var(--text3)">'+d.tcodes.slice(0,3).join(' · ')+'</div>'+
+  '</div>';
+}
+
+function ccAnch(id,side,pos,off){
+  var p=pos[id];if(!p)return{x:0,y:0};
+  var w=CC_W,h=CC_H,o=off||0,hw=w*0.28,hh=h*0.28;
+  if(side==='t')return{x:p.x+w/2+o*hw,y:p.y};
+  if(side==='b')return{x:p.x+w/2+o*hw,y:p.y+h};
+  if(side==='l')return{x:p.x,y:p.y+h/2+o*hh};
+  if(side==='r')return{x:p.x+w,y:p.y+h/2+o*hh};
+  return{x:p.x+w/2,y:p.y+h/2};
+}
+
+function renderCanvas(cfg){
+  var pos=cfg.pos,rels=cfg.rels,cw=cfg.cw,ch=cfg.ch,secId=cfg.secId;
+  var TW=CC_W,TH=CC_H,MARGIN=20,R=7,GAP=20;
+
+  function getObs(fk,tk){
+    return Object.keys(pos).filter(function(k){return k!==fk&&k!==tk;}).map(function(k){
+      var p=pos[k];return{x1:p.x-6,y1:p.y-6,x2:p.x+TW+6,y2:p.y+TH+6};
+    });
+  }
+  function segBlocked(x1,y1,x2,y2,obs){
+    var PAD=4;
+    for(var i=0;i<obs.length;i++){
+      var r=obs[i],ox1=r.x1-PAD,oy1=r.y1-PAD,ox2=r.x2+PAD,oy2=r.y2+PAD;
+      if(Math.abs(x1-x2)<0.5){var mnY=Math.min(y1,y2),mxY=Math.max(y1,y2);if(x1>ox1&&x1<ox2&&mxY>oy1+1&&mnY<oy2-1)return true;}
+      else{var mnX=Math.min(x1,x2),mxX=Math.max(x1,x2);if(y1>oy1&&y1<oy2&&mxX>ox1+1&&mnX<ox2-1)return true;}
+    }
+    return false;
+  }
+  function snap(arr,v){var b=arr[0],bd=Math.abs(arr[0]-v);arr.forEach(function(x){var d=Math.abs(x-v);if(d<bd){bd=d;b=x;}});return b;}
+  function simp(pts){
+    if(pts.length<3)return pts;
+    var o=[pts[0]];
+    for(var i=1;i<pts.length-1;i++){var p=pts[i-1],c=pts[i],n=pts[i+1];if(!((p[0]===c[0]&&c[0]===n[0])||(p[1]===c[1]&&c[1]===n[1])))o.push(c);}
+    o.push(pts[pts.length-1]);return o;
+  }
+  function bldPts(pts){
+    if(pts.length<2)return{d:'',mx:0,my:0,pts:pts};
+    var d='M'+pts[0][0]+','+pts[0][1];
+    for(var i=1;i<pts.length-1;i++){
+      var p=pts[i-1],c=pts[i],n=pts[i+1];
+      var dx1=c[0]-p[0],dy1=c[1]-p[1],dx2=n[0]-c[0],dy2=n[1]-c[1];
+      var l1=Math.sqrt(dx1*dx1+dy1*dy1),l2=Math.sqrt(dx2*dx2+dy2*dy2),r=Math.min(R,l1/2,l2/2);
+      if(r<1){d+=' L'+c[0]+','+c[1];continue;}
+      var bx0=c[0]-r*(dx1/l1),by0=c[1]-r*(dy1/l1),ex0=c[0]+r*(dx2/l2),ey0=c[1]+r*(dy2/l2);
+      d+=' L'+bx0.toFixed(1)+','+by0.toFixed(1)+' Q'+c[0]+','+c[1]+' '+ex0.toFixed(1)+','+ey0.toFixed(1);
+    }
+    d+=' L'+pts[pts.length-1][0]+','+pts[pts.length-1][1];
+    var mid=Math.floor(pts.length/2);
+    return{d:d,mx:(pts[mid-1][0]+pts[mid][0])/2,my:(pts[mid-1][1]+pts[mid][1])/2,pts:pts};
+  }
+  function route(ax,ay,bx,by,fs,ts,fk,tk){
+    var obs=getObs(fk,tk);
+    var ex=ax,ey=ay,nx=bx,ny=by;
+    if(fs==='r')ex=ax+MARGIN;else if(fs==='l')ex=ax-MARGIN;else if(fs==='b')ey=ay+MARGIN;else ey=ay-MARGIN;
+    if(ts==='l')nx=bx-MARGIN;else if(ts==='r')nx=bx+MARGIN;else if(ts==='t')ny=by-MARGIN;else ny=by+MARGIN;
+    var xSet=new Set(),ySet=new Set();
+    [ax,ex,bx,nx].forEach(function(v){xSet.add(Math.round(v));});
+    [ay,ey,by,ny].forEach(function(v){ySet.add(Math.round(v));});
+    Object.keys(pos).forEach(function(k){
+      var p=pos[k];
+      xSet.add(Math.round(p.x-GAP));xSet.add(Math.round(p.x+TW+GAP));
+      ySet.add(Math.round(p.y-GAP));ySet.add(Math.round(p.y+TH+GAP));
+      xSet.add(Math.round(p.x+TW/2));ySet.add(Math.round(p.y+TH/2));
+    });
+    var xs=Array.from(xSet).sort(function(a,b){return a-b;});
+    var ys=Array.from(ySet).sort(function(a,b){return a-b;});
+    var W=xs.length,H=ys.length;
+    var si=xs.indexOf(snap(xs,ex)),sj=ys.indexOf(snap(ys,ey));
+    var ti=xs.indexOf(snap(xs,nx)),tj=ys.indexOf(snap(ys,ny));
+    if(si<0||sj<0||ti<0||tj<0)return bldPts(simp([[ax,ay],[ex,ey],[ex,ny],[nx,ny],[bx,by]]));
+    var start=sj*W+si,goal=tj*W+ti;
+    if(start===goal)return bldPts([[ax,ay],[bx,by]]);
+    var dist=new Array(W*H).fill(Infinity),prev=new Array(W*H).fill(-1);
+    var dirs=[[1,0],[-1,0],[0,1],[0,-1]];
+    dist[start]=0;var queue=[start],qi=0;
+    while(qi<queue.length){
+      var cur=queue[qi++];if(cur===goal)break;
+      var ci=cur%W,cj=Math.floor(cur/W),cx=xs[ci],cy=ys[cj];
+      for(var d=0;d<4;d++){
+        var ni=ci+dirs[d][0],nj=cj+dirs[d][1];
+        if(ni<0||ni>=W||nj<0||nj>=H)continue;
+        var nid=nj*W+ni;if(dist[nid]!==Infinity)continue;
+        if(segBlocked(cx,cy,xs[ni],ys[nj],obs))continue;
+        dist[nid]=dist[cur]+1;prev[nid]=cur;queue.push(nid);
+      }
+    }
+    var pts=[];
+    if(dist[goal]===Infinity){pts=[[ax,ay],[ex,ey],[ex,ny],[nx,ny],[bx,by]];}
+    else{var node=goal;while(node!==-1){pts.unshift([xs[node%W],ys[Math.floor(node/W)]]);node=prev[node];}
+      if(pts[0][0]!==ax||pts[0][1]!==ay)pts.unshift([ax,ay]);
+      if(pts[pts.length-1][0]!==bx||pts[pts.length-1][1]!==by)pts.push([bx,by]);}
+    return bldPts(simp(pts));
+  }
+
+  var placed=[];
+  function pickLbl(pts,allR){
+    if(!pts||pts.length<2)return{mx:0,my:0};
+    var best=-Infinity,bx=0,by=0,PERP=10;
+    for(var i=1;i<pts.length-2;i++){
+      var p=pts[i],q=pts[i+1],dx=q[0]-p[0],dy=q[1]-p[1],len=Math.sqrt(dx*dx+dy*dy);
+      if(len<20)continue;
+      var isH=Math.abs(dy)<Math.abs(dx),mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2;
+      var cands=isH?[[mx,my-PERP],[mx,my+PERP]]:[[mx+PERP,my],[mx-PERP,my]];
+      cands.forEach(function(pp){
+        var px=pp[0],py=pp[1],minD=Infinity;
+        allR.forEach(function(r){var ddx=Math.max(0,Math.max(r.x1-px,px-r.x2)),ddy=Math.max(0,Math.max(r.y1-py,py-r.y2));minD=Math.min(minD,Math.sqrt(ddx*ddx+ddy*ddy));});
+        if(minD<2)return;
+        var sep=placed.length?Math.min.apply(null,placed.map(function(l){return Math.sqrt(Math.pow(l.x-px,2)+Math.pow(l.y-py,2));})):80;
+        var score=(Math.min(minD,60)/60)*0.5+(Math.min(sep,80)/80)*0.3+(Math.min(len,200)/200)*0.2;
+        if(score>best){best=score;bx=isH?mx:px;by=isH?py:my;}
+      });
+    }
+    if(best===-Infinity){var m=Math.floor(pts.length/2);bx=(pts[m-1][0]+pts[m][0])/2;by=(pts[m-1][1]+pts[m][1])/2;}
+    placed.push({x:bx,y:by});return{mx:bx,my:by};
+  }
+
+  placed=[];
+  var allRects=Object.keys(pos).map(function(k){var p=pos[k];return{x1:p.x,y1:p.y,x2:p.x+TW,y2:p.y+TH};});
+  var svgL='',svgLbl='',svgHits='';
+  var defs='<defs>'+
+    '<marker id="cc-ah" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">'+
+    '<path d="M0,0.5 L0,5.5 L5.5,3 Z" fill="context-stroke"/></marker>'+
+    '</defs>';
+
+  /* Pre-compute spread offsets so no two lines share the exact same anchor point.
+     For each (cardKey, side) pair, count how many lines use it and assign
+     evenly spaced offsets in [-0.5, +0.5]. */
+  var sideCount={};   /* key = "cardId|side" → total count */
+  var sideIndex={};   /* key = "cardId|side" → next index */
+  rels.forEach(function(r){
+    var fKey=r[0]+'|'+r[3], tKey=r[1]+'|'+r[4];
+    sideCount[fKey]=(sideCount[fKey]||0)+1;
+    sideCount[tKey]=(sideCount[tKey]||0)+1;
+  });
+  function autoOff(cardId,side){
+    var key=cardId+'|'+side;
+    var n=sideCount[key]||1;
+    var idx=sideIndex[key]||0;
+    sideIndex[key]=idx+1;
+    if(n===1)return 0;
+    /* spread evenly across [-0.55, +0.55] */
+    return -0.55 + idx*(1.1/(n-1));
+  }
+
+  rels.forEach(function(r){
+    var fk=r[0],tk=r[1],lbl=r[2],fs=r[3],ts=r[4];
+    /* use manual offsets if provided, otherwise auto-spread */
+    var fo = autoOff(fk,fs);
+    var to2= autoOff(tk,ts);
+    var a=ccAnch(fk,fs,pos,fo),b=ccAnch(tk,ts,pos,to2);
+    var fd=ALL[fk];var cv=fd?'var(--'+fd.color+')':'var(--teal)';
+    var bp=route(a.x,a.y,b.x,b.y,fs,ts,fk,tk);
+    var lp=pickLbl(bp.pts||[[a.x,a.y],[b.x,b.y]],allRects);
+    var lw=lbl.length*5.8+12;
+    svgHits+='<path class="rel-line-hit cc-hit" data-from="'+fk+'" data-to="'+tk+'" data-card="'+lbl+'" d="'+bp.d+'"/>';
+    svgL+='<path class="rel-line cc-line" data-from="'+fk+'" data-to="'+tk+'" d="'+bp.d+'" style="stroke:'+cv+';color:'+cv+';fill:none" stroke-width="1.8" opacity=".55" marker-end="url(#cc-ah)" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>';
+    svgLbl+='<g class="rel-lbl cc-lbl" data-from="'+fk+'" data-to="'+tk+'" pointer-events="none" style="transition:opacity .18s;opacity:.9">'+
+      '<rect x="'+(lp.mx-lw/2)+'" y="'+(lp.my-8.5)+'" width="'+lw+'" height="16" rx="3" style="fill:var(--card);stroke:'+cv+'" stroke-width="0.8"/>'+
+      '<text x="'+lp.mx+'" y="'+(lp.my+4.5)+'" text-anchor="middle" font-size="9" font-weight="600" font-family="IBM Plex Mono,monospace" style="fill:'+cv+'">'+lbl+'</text>'+
+    '</g>';
+  });
+
+  var cards=Object.keys(pos).map(function(k){return ccCard(k,pos);}).join('');
+  return '<p class="section-desc">'+cfg.desc+'</p>'+
+    '<div class="legend-bar">'+cfg.legend+'</div>'+
+    '<div class="erd-wrap"><div class="erd-canvas" style="width:'+cw+'px;height:'+ch+'px" id="cc-canvas-'+secId+'">'+
+      '<svg class="erd-svg" width="'+cw+'" height="'+ch+'" viewBox="0 0 '+cw+' '+ch+'">'+defs+svgL+svgLbl+'</svg>'+
+      cards+
+      '<svg class="erd-hit-svg" width="'+cw+'" height="'+ch+'" viewBox="0 0 '+cw+' '+ch+'">'+svgHits+'</svg>'+
+    '</div></div>';
+}
+
+function initCcHighlight(secId){
+  var wrap=document.getElementById('cc-canvas-'+secId);if(!wrap)return;
+  var lines=wrap.querySelectorAll('.cc-line');
+  var hits=wrap.querySelectorAll('.cc-hit');
+  var tbls=wrap.querySelectorAll('.erd-tbl');
+  var lbls=wrap.querySelectorAll('.cc-lbl');
+  var tooltip=document.getElementById('lineTooltip');
+  var pinned=null;
+  function applyCard(key){
+    lines.forEach(function(l){var c=l.dataset.from===key||l.dataset.to===key;l.style.opacity=c?'1':'0.05';l.style.strokeWidth=c?'2.8':'1.8';});
+    lbls.forEach(function(l){var c=l.dataset.from===key||l.dataset.to===key;l.style.opacity=c?'1':'0.05';});
+    tbls.forEach(function(t){
+      if(t.dataset.t===key){t.classList.remove('hl-dim');return;}
+      var linked=false;
+      lines.forEach(function(l){if((l.dataset.from===key&&l.dataset.to===t.dataset.t)||(l.dataset.to===key&&l.dataset.from===t.dataset.t))linked=true;});
+      t.classList.toggle('hl-active',linked);t.classList.toggle('hl-dim',!linked);
+    });
+  }
+  function applyLine(from,to){
+    lines.forEach(function(l){var m=l.dataset.from===from&&l.dataset.to===to;l.style.opacity=m?'1':'0.05';l.style.strokeWidth=m?'3':'1.8';});
+    lbls.forEach(function(l){var m=l.dataset.from===from&&l.dataset.to===to;l.style.opacity=m?'1':'0.05';});
+    tbls.forEach(function(t){var e=t.dataset.t===from||t.dataset.t===to;t.classList.toggle('hl-active',e);t.classList.toggle('hl-dim',!e);});
+  }
+  function resetAll(){
+    lines.forEach(function(l){l.style.opacity='0.55';l.style.strokeWidth='1.8';});
+    lbls.forEach(function(l){l.style.opacity='0.9';});
+    tbls.forEach(function(t){t.classList.remove('hl-active','hl-dim','hl-pinned');});
+    if(tooltip)tooltip.className='line-tooltip';
+  }
+  function showTip(from,to,card,e){
+    if(!tooltip)return;
+    var fd=ALL[from]||{},td=ALL[to]||{};
+    var fc=COLORS[fd.color||'teal'],tc=COLORS[td.color||'teal'];
+    tooltip.innerHTML='<span class="lt-card" style="background:'+fc.bg+';color:'+fc.fg+'">'+fd.title+'</span>'+
+      '<span class="lt-rel">'+card+'</span>'+
+      '<span class="lt-card" style="background:'+tc.bg+';color:'+tc.fg+'">'+td.title+'</span>'+
+      (e?'<span style="color:var(--text3);margin-left:8px;font-size:9px">(click to pin)</span>':'');
+    tooltip.className='line-tooltip show';
+    if(e){var x=e.clientX+14,y=e.clientY-36;if(x+280>window.innerWidth)x=e.clientX-290;if(y<8)y=e.clientY+16;tooltip.style.left=x+'px';tooltip.style.top=y+'px';tooltip.style.transform='none';}
+  }
+  tbls.forEach(function(el){
+    el.addEventListener('click',function(ev){ev.stopPropagation();
+      var key=this.dataset.t;
+      if(pinned&&pinned.type==='card'&&pinned.key===key){pinned=null;resetAll();return;}
+      pinned={type:'card',key:key};tbls.forEach(function(t){t.classList.remove('hl-pinned');});
+      el.classList.add('hl-pinned');applyCard(key);if(tooltip)tooltip.className='line-tooltip';
+    });
+    el.addEventListener('mouseenter',function(){if(pinned)return;applyCard(this.dataset.t);});
+    el.addEventListener('mouseleave',function(){if(pinned)return;resetAll();});
+  });
+  hits.forEach(function(hit){
+    hit.addEventListener('click',function(ev){ev.stopPropagation();
+      var from=this.dataset.from,to=this.dataset.to,card=this.dataset.card;
+      if(pinned&&pinned.type==='line'&&pinned.from===from&&pinned.to===to){pinned=null;resetAll();return;}
+      pinned={type:'line',from:from,to:to,card:card};tbls.forEach(function(t){t.classList.remove('hl-pinned');});
+      applyLine(from,to);showTip(from,to,card,null);
+      if(tooltip){tooltip.style.left='50%';tooltip.style.top='80px';tooltip.style.transform='translateX(-50%)';}
+    });
+    hit.addEventListener('mouseenter',function(e){if(pinned)return;applyLine(this.dataset.from,this.dataset.to);showTip(this.dataset.from,this.dataset.to,this.dataset.card,e);});
+    hit.addEventListener('mousemove',function(e){if(pinned)return;var x=e.clientX+14,y=e.clientY-36;if(x+280>window.innerWidth)x=e.clientX-290;if(y<8)y=e.clientY+16;if(tooltip){tooltip.style.left=x+'px';tooltip.style.top=y+'px';tooltip.style.transform='none';}});
+    hit.addEventListener('mouseleave',function(){if(pinned)return;resetAll();if(tooltip)tooltip.className='line-tooltip';});
+  });
+  wrap.addEventListener('click',function(){if(pinned){pinned=null;resetAll();tbls.forEach(function(t){t.classList.remove('hl-pinned');});}});
+}
+
+function renderOrg(){
+  var pos={
+    client:          {x:360,y:20},
+    companycode:     {x:360,y:180},
+    plant:           {x:360,y:340},
+    maint_plan_plant:{x:100,y:500},
+    maint_plant:     {x:600,y:500},
+    storage_loc:     {x:20, y:680},
+    planner_group:   {x:280,y:680},
+    work_center:     {x:540,y:680}
+  };
+  var rels=[
+    ['client','companycode','1:N','b','t'],
+    ['companycode','plant','1:N','b','t'],
+    ['plant','maint_plan_plant','1:N','b','r'],
+    ['plant','maint_plant','1:N','b','t'],
+    ['maint_plan_plant','planner_group','1:N','b','t'],
+    ['maint_plant','storage_loc','1:N','b','t'],
+    ['maint_plant','work_center','1:N','b','t'],
+  ];
+  return renderCanvas({secId:'org',cw:860,ch:830,pos:pos,rels:rels,
+    desc:'The foundational org structure of SAP EAM/PM — from Client down to execution-level elements. Click any card for full 5W1H detail.',
+    legend:'<span class="tag" style="background:var(--purple-l);color:var(--purple)">&#x25cf; System</span><span class="tag" style="background:var(--blue-l);color:var(--blue)">&#x25cf; Financial</span><span class="tag" style="background:var(--teal-l);color:var(--teal)">&#x25cf; Operational</span><span class="tag" style="background:var(--coral-l);color:var(--coral)">&#x25cf; Maint. roles</span><span class="tag" style="background:var(--green-l);color:var(--green)">&#x25cf; Inventory</span><span class="tag" style="background:var(--amber-l);color:var(--amber)">&#x25cf; Planning</span><span class="tag" style="background:var(--pink-l);color:var(--pink)">&#x25cf; Execution</span>'
+  });
+}
+
+function renderTech(){
+  var pos={
+    func_loc:  {x:60, y:40},
+    equipment: {x:60, y:220},
+    bom:       {x:360,y:40},
+    serial_num:{x:360,y:220},
+    class_char:{x:360,y:400}
+  };
+  var rels=[
+    ['func_loc','equipment','installed at','b','t'],
+    ['equipment','bom','1:N','r','l'],
+    ['equipment','serial_num','1:N','r','l'],
+    ['equipment','class_char','1:N','r','l'],
+  ];
+  return renderCanvas({secId:'tech',cw:680,ch:560,pos:pos,rels:rels,
+    desc:'Technical objects — the master data backbone defining WHAT is maintained, WHERE, and its specifications. Click any card for full detail.',
+    legend:'<span class="tag" style="background:var(--purple-l);color:var(--purple)">&#x25cf; Location</span><span class="tag" style="background:var(--blue-l);color:var(--blue)">&#x25cf; Assets</span><span class="tag" style="background:var(--teal-l);color:var(--teal)">&#x25cf; Parts</span><span class="tag" style="background:var(--coral-l);color:var(--coral)">&#x25cf; Traceability</span><span class="tag" style="background:var(--green-l);color:var(--green)">&#x25cf; Specs</span>'
+  });
+}
+
+function renderProc(){
+  var pos={
+    notification: {x:20, y:220},
+    maint_order:  {x:300,y:220},
+    confirmation: {x:300,y:400},
+    settlement:   {x:560,y:400},
+    maint_history:{x:560,y:220}
+  };
+  var rels=[
+    ['notification','maint_order','raises','r','l'],
+    ['maint_order','confirmation','confirms','b','t'],
+    ['maint_order','maint_history','records','r','l'],
+    ['confirmation','settlement','triggers','r','l'],
+    ['settlement','maint_history','closes','t','b'],
+  ];
+  return renderCanvas({secId:'proc',cw:840,ch:560,pos:pos,rels:rels,
+    desc:'End-to-end corrective maintenance process — from detection through execution to financial settlement. Click any card for full detail.',
+    legend:'<span class="tag" style="background:var(--purple-l);color:var(--purple)">&#x25cf; Detection</span><span class="tag" style="background:var(--blue-l);color:var(--blue)">&#x25cf; Authorization</span><span class="tag" style="background:var(--teal-l);color:var(--teal)">&#x25cf; Execution</span><span class="tag" style="background:var(--amber-l);color:var(--amber)">&#x25cf; Financial</span><span class="tag" style="background:var(--coral-l);color:var(--coral)">&#x25cf; Analytics</span>'
+  });
+}
+
+function renderPrev(){
+  var pos={
+    task_list:      {x:20, y:40},
+    maint_strategy: {x:360,y:40},
+    maint_plan_prev:{x:190,y:240},
+    meas_point:     {x:190,y:440}
+  };
+  var rels=[
+    ['task_list','maint_plan_prev','uses','b','t'],
+    ['maint_strategy','maint_plan_prev','drives','b','t'],
+    ['maint_plan_prev','meas_point','generates','b','t'],
+  ];
+  return renderCanvas({secId:'prev',cw:680,ch:600,pos:pos,rels:rels,
+    desc:'Preventive & condition-based maintenance — reusable task lists, strategies, and automated scheduling. Click any card for full detail.',
+    legend:'<span class="tag" style="background:var(--purple-l);color:var(--purple)">&#x25cf; Procedures</span><span class="tag" style="background:var(--blue-l);color:var(--blue)">&#x25cf; Scheduling</span><span class="tag" style="background:var(--teal-l);color:var(--teal)">&#x25cf; Intervals</span><span class="tag" style="background:var(--amber-l);color:var(--amber)">&#x25cf; Condition</span>'
+  });
+}
+
 
 /* ============================================================ ERD */
 function renderErd(){
   var tblPos={
-    T000:{x:30,y:40},T001:{x:30,y:210},T001W:{x:300,y:40},T001L:{x:300,y:240},
-    MARD:{x:300,y:420},T024I:{x:570,y:40},CRHD:{x:570,y:240},CRCO:{x:570,y:420},
-    IFLO:{x:840,y:40},EQUI:{x:1120,y:40},ILOA:{x:840,y:260},
-    STKO:{x:1120,y:260},STPO:{x:1380,y:260},KLAH:{x:1120,y:450},KSSK:{x:1380,y:450},
-    QMEL:{x:30,y:660},QMFE:{x:30,y:870},AUFK:{x:320,y:660},AFKO:{x:320,y:900},
-    AFVC:{x:590,y:660},RESB:{x:590,y:870},AFRU:{x:840,y:660},
-    COBK:{x:840,y:870},COEP:{x:840,y:1060},
-    PLKO:{x:1080,y:660},PLPO:{x:1080,y:870},PLMZ:{x:1080,y:1080},
-    MPLA:{x:1300,y:660},MPOS:{x:1300,y:870},MHIS:{x:1300,y:1080},
-    STRA:{x:1520,y:660},STRAT_P:{x:1520,y:830},
-    IMPTT:{x:1520,y:1000},IMRG:{x:1520,y:1180}
+    /* ── ORG master data (top-left) ── */
+    T000    :{x:20,   y:40},
+    T001    :{x:20,   y:194},
+    T001W   :{x:240,  y:40},
+    T001L   :{x:240,  y:236},
+    MARD    :{x:240,  y:411},
+    T024I   :{x:460,  y:40},
+    CRHD    :{x:460,  y:215},
+    CRCO    :{x:460,  y:411},
+    /* ── Technical objects (top-right) ── */
+    IFLO    :{x:690,  y:40},
+    ILOA    :{x:690,  y:317},
+    EQUI    :{x:910,  y:40},
+    MAST    :{x:910,  y:320},
+    STKO    :{x:910,  y:537},
+    KLAH    :{x:1130, y:40},
+    KSSK    :{x:1130, y:215},
+    STPO    :{x:1130, y:390},
+    /* ── Maintenance processing (bottom-left) ── */
+    QMEL    :{x:20,   y:818},
+    QMFE    :{x:20,   y:1056},
+    AUFK    :{x:240,  y:818},
+    AFKO    :{x:240,  y:1056},
+    AFVC    :{x:460,  y:818},
+    RESB    :{x:460,  y:1056},
+    AFRU    :{x:460,  y:1315},
+    COBK    :{x:680,  y:818},
+    COEP    :{x:680,  y:1014},
+    /* ── Preventive maintenance (bottom-right) ── */
+    PLKO    :{x:910,  y:818},
+    PLPO    :{x:910,  y:1035},
+    PLMZ    :{x:910,  y:1294},
+    MPLA    :{x:1130, y:818},
+    MPOS    :{x:1130, y:1035},
+    MHIS    :{x:1130, y:1273},
+    STRA    :{x:1350, y:818},
+    STRAT_P :{x:1350, y:993},
+    IMPTT   :{x:1570, y:818},
+    IMRG    :{x:1570, y:1035}
   };
+
   var domains=[
-    {label:"Organizational master data",x:0,y:0,w:790,h:580,color:"teal"},
-    {label:"Technical objects",x:820,y:0,w:770,h:580,color:"purple"},
-    {label:"Maintenance processing (transactional)",x:0,y:630,w:1060,h:610,color:"blue"},
-    {label:"Preventive maintenance",x:1070,y:630,w:650,h:660,color:"amber"}
+    {label:"Organizational master data",            x:0,   y:0,   w:650, h:628, color:"teal"},
+    {label:"Technical objects",                     x:670, y:0,   w:650, h:733, color:"purple"},
+    {label:"Maintenance processing (transactional)",x:0,   y:798, w:870, h:755, color:"blue"},
+    {label:"Preventive maintenance",                x:890, y:798, w:870, h:734, color:"amber"}
   ];
 
   /* domain → CSS var name */
@@ -262,63 +719,319 @@ function renderErd(){
 
   function tblH(k){var t=ERD[k];return t?32+20+t.fields.length*21+4:90;}
 
-  function anch(k,s){
+  /* off: -1..+1 spreads anchor away from centre along the side */
+  function anch(k,s,off){
     var p=tblPos[k];if(!p)return{x:0,y:0};
-    var w=170,h=tblH(k);
-    if(s==='t')return{x:p.x+w/2,y:p.y};
-    if(s==='b')return{x:p.x+w/2,y:p.y+h};
-    if(s==='l')return{x:p.x,y:p.y+h/2};
-    if(s==='r')return{x:p.x+w,y:p.y+h/2};
+    var w=170,h=tblH(k),o=off||0;
+    var hw=w*0.28,hh=h*0.28;
+    if(s==='t')return{x:p.x+w/2+o*hw, y:p.y};
+    if(s==='b')return{x:p.x+w/2+o*hw, y:p.y+h};
+    if(s==='l')return{x:p.x,           y:p.y+h/2+o*hh};
+    if(s==='r')return{x:p.x+w,         y:p.y+h/2+o*hh};
     return{x:p.x+w/2,y:p.y+h/2};
   }
 
-  /* Smooth cubic bezier + midpoint */
-  function bez(ax,ay,bx,by,fs,ts){
-    var dist=Math.sqrt((bx-ax)*(bx-ax)+(by-ay)*(by-ay));
-    var cp=Math.max(45,Math.min(190,dist*0.42));
-    var c1x=ax,c1y=ay,c2x=bx,c2y=by;
-    if(fs==='b')c1y+=cp;else if(fs==='t')c1y-=cp;
-    else if(fs==='r')c1x+=cp;else if(fs==='l')c1x-=cp;
-    if(ts==='t')c2y-=cp;else if(ts==='b')c2y+=cp;
-    else if(ts==='l')c2x-=cp;else if(ts==='r')c2x+=cp;
-    return{
-      d:'M'+ax+','+ay+' C'+c1x+','+c1y+' '+c2x+','+c2y+' '+bx+','+by,
-      mx:0.125*ax+0.375*c1x+0.375*c2x+0.125*bx,
-      my:0.125*ay+0.375*c1y+0.375*c2y+0.125*by
-    };
+  /* ── Orthogonal obstacle-avoiding router ──────────────────────────────
+     Uses a grid of candidate X and Y coordinates derived from card edges,
+     then runs BFS over orthogonal moves to find the shortest clear path.
+  ──────────────────────────────────────────────────────────────────── */
+  var TW=170;
+  function tblRect(k){
+    var p=tblPos[k],h=tblH(k);
+    return{x1:p.x,y1:p.y,x2:p.x+TW,y2:p.y+h};
+  }
+  function rectHit(rx1,ry1,rx2,ry2,px,py){
+    return px>rx1&&px<rx2&&py>ry1&&py<ry2;
+  }
+  function segBlockedBy(x1,y1,x2,y2,rects){
+    var PAD=6;
+    for(var i=0;i<rects.length;i++){
+      var r=rects[i];
+      var ox1=r.x1-PAD,oy1=r.y1-PAD,ox2=r.x2+PAD,oy2=r.y2+PAD;
+      if(Math.abs(x1-x2)<0.5){/* vertical */
+        var mnY=Math.min(y1,y2),mxY=Math.max(y1,y2);
+        if(x1>ox1&&x1<ox2&&mxY>oy1+1&&mnY<oy2-1)return true;
+      } else {/* horizontal */
+        var mnX=Math.min(x1,x2),mxX=Math.max(x1,x2);
+        if(y1>oy1&&y1<oy2&&mxX>ox1+1&&mnX<ox2-1)return true;
+      }
+    }
+    return false;
   }
 
+  function routePath(ax,ay,bx,by,fs,ts,fromKey,toKey){
+    var MARGIN=24;
+    var R=8;
+
+    var obsRects=Object.keys(tblPos).filter(function(k){
+      return k!==fromKey&&k!==toKey;
+    }).map(function(k){return tblRect(k);});
+
+    /* Escape stub — move straight out MARGIN px from anchor */
+    var ex=ax,ey=ay,nx=bx,ny=by;
+    if(fs==='r')ex=ax+MARGIN; else if(fs==='l')ex=ax-MARGIN;
+    else if(fs==='b')ey=ay+MARGIN; else if(fs==='t')ey=ay-MARGIN;
+    if(ts==='l')nx=bx-MARGIN; else if(ts==='r')nx=bx+MARGIN;
+    else if(ts==='t')ny=by-MARGIN; else if(ts==='b')ny=by+MARGIN;
+
+    /* Build dense orthogonal grid:
+       Use card edges ±MARGIN and midpoints between adjacent edges */
+    var xSet=new Set(), ySet=new Set();
+    /* Always include escape/approach points */
+    [ax,ex,bx,nx].forEach(function(v){xSet.add(Math.round(v));});
+    [ay,ey,by,ny].forEach(function(v){ySet.add(Math.round(v));});
+
+    Object.keys(tblPos).forEach(function(k){
+      var r=tblRect(k);
+      var L=Math.round(r.x1-MARGIN), R2=Math.round(r.x2+MARGIN);
+      var T=Math.round(r.y1-MARGIN), B=Math.round(r.y2+MARGIN);
+      xSet.add(L); xSet.add(R2);
+      ySet.add(T); ySet.add(B);
+      /* midpoints on each side for finer routing */
+      xSet.add(Math.round((r.x1+r.x2)/2));
+      ySet.add(Math.round((r.y1+r.y2)/2));
+    });
+
+    var xs=Array.from(xSet).sort(function(a,b){return a-b;});
+    var ys=Array.from(ySet).sort(function(a,b){return a-b;});
+
+    /* Snap escape/approach to nearest grid point */
+    function snap(arr,v){
+      var best=arr[0],bd=Math.abs(arr[0]-v);
+      arr.forEach(function(x){var d=Math.abs(x-v);if(d<bd){bd=d;best=x;}});
+      return best;
+    }
+    var six=xs.indexOf(snap(xs,ex)), siy=ys.indexOf(snap(ys,ey));
+    var tix=xs.indexOf(snap(xs,nx)), tiy=ys.indexOf(snap(ys,ny));
+
+    var W=xs.length,H=ys.length;
+    var startNode=siy*W+six, goalNode=tiy*W+tix;
+
+    if(startNode===goalNode){
+      return buildPath([[ax,ay],[bx,by]],R);
+    }
+
+    /* BFS with step cost = Manhattan distance (prefer shorter segments) */
+    var dist=new Array(W*H).fill(Infinity);
+    var prev=new Array(W*H).fill(-1);
+    var dirs=[[1,0],[-1,0],[0,1],[0,-1]];
+    dist[startNode]=0;
+    var queue=[startNode], qi=0;
+
+    while(qi<queue.length){
+      var cur=queue[qi++];
+      if(cur===goalNode)break;
+      var ci=cur%W, cj=Math.floor(cur/W);
+      var cx=xs[ci], cy=ys[cj];
+      for(var d=0;d<4;d++){
+        var ni=ci+dirs[d][0], nj=cj+dirs[d][1];
+        if(ni<0||ni>=W||nj<0||nj>=H)continue;
+        var nid=nj*W+ni;
+        if(dist[nid]!==Infinity)continue;
+        var nx2=xs[ni], ny2=ys[nj];
+        if(segBlockedBy(cx,cy,nx2,ny2,obsRects))continue;
+        dist[nid]=dist[cur]+1;
+        prev[nid]=cur;
+        queue.push(nid);
+      }
+    }
+
+    var pts=[];
+    if(dist[goalNode]===Infinity){
+      /* Fallback: simple L-shape ignoring obstacles */
+      pts=[[ax,ay],[ex,ey],[ex,ny],[nx,ny],[bx,by]];
+    } else {
+      var node=goalNode;
+      while(node!==-1){
+        pts.unshift([xs[node%W],ys[Math.floor(node/W)]]);
+        node=prev[node];
+      }
+      if(pts[0][0]!==ax||pts[0][1]!==ay) pts.unshift([ax,ay]);
+      if(pts[pts.length-1][0]!==bx||pts[pts.length-1][1]!==by) pts.push([bx,by]);
+    }
+
+    pts=simplify(pts);
+    return buildPath(pts,R);
+  }
+
+  function simplify(pts){
+    if(pts.length<3)return pts;
+    var out=[pts[0]];
+    for(var i=1;i<pts.length-1;i++){
+      var p=pts[i-1],c=pts[i],n=pts[i+1];
+      if(!((p[0]===c[0]&&c[0]===n[0])||(p[1]===c[1]&&c[1]===n[1])))out.push(c);
+    }
+    out.push(pts[pts.length-1]);
+    return out;
+  }
+
+  function fallbackLine(ax,ay,bx,by,ex,ey,nx,ny){
+    return buildPath(simplify([[ax,ay],[ex,ey],[ex,ny],[nx,ny],[bx,by]]),7);
+  }
+
+  /* ── Smart label placement ─────────────────────────────────────────────
+     For each segment of the routed path, score its midpoint by:
+       1. Segment length  — longer segments have more room
+       2. Distance from all card rects — prefer open space
+       3. Distance from already-placed labels — avoid crowding
+     The winner gets a perpendicular offset so the badge sits beside
+     the line, not on top of it.
+  ──────────────────────────────────────────────────────────────────── */
+  var _placedLabels=[];  /* reset per render call */
+
+  function scorePoint(mx,my,segLen,isHoriz,allRects){
+    /* 1. Segment length score (normalised, cap at 200px) */
+    var lenScore=Math.min(segLen,200)/200;
+
+    /* 2. Clearance from every card rect */
+    var minDist=Infinity;
+    for(var i=0;i<allRects.length;i++){
+      var r=allRects[i];
+      var dx=Math.max(0,Math.max(r.x1-mx, mx-r.x2));
+      var dy=Math.max(0,Math.max(r.y1-my, my-r.y2));
+      var d=Math.sqrt(dx*dx+dy*dy);
+      if(d<minDist)minDist=d;
+    }
+    /* inside a card → disqualify */
+    if(minDist<2)return -Infinity;
+    var clearScore=Math.min(minDist,60)/60;
+
+    /* 3. Separation from previously placed labels */
+    var minLblDist=Infinity;
+    for(var j=0;j<_placedLabels.length;j++){
+      var lbl=_placedLabels[j];
+      var d2=Math.sqrt(Math.pow(lbl.x-mx,2)+Math.pow(lbl.y-my,2));
+      if(d2<minLblDist)minLblDist=d2;
+    }
+    var sepScore=_placedLabels.length===0?1:Math.min(minLblDist,80)/80;
+
+    /* Weighted sum — clearance most important, then separation, then length */
+    return clearScore*0.5 + sepScore*0.3 + lenScore*0.2;
+  }
+
+  function pickLabelPos(pts,allRects){
+    if(pts.length<2)return{mx:pts[0][0],my:pts[0][1]};
+
+    var bestScore=-Infinity, bestX=0, bestY=0;
+    var PERP=10; /* perpendicular offset from line */
+
+    for(var i=0;i<pts.length-1;i++){
+      var p=pts[i], q=pts[i+1];
+      var dx=q[0]-p[0], dy=q[1]-p[1];
+      var len=Math.sqrt(dx*dx+dy*dy);
+      if(len<20)continue; /* too short to place a label */
+
+      /* Skip the first and last stub segments (too close to card edges) */
+      if(i===0||i===pts.length-2)continue;
+
+      var isHoriz=Math.abs(dy)<Math.abs(dx);
+      var mx=(p[0]+q[0])/2, my=(p[1]+q[1])/2;
+
+      /* Perpendicular offset: push label off the line */
+      var px, py;
+      if(isHoriz){
+        px=mx; py=my-PERP; /* above horizontal segment */
+      } else {
+        px=mx+PERP; py=my; /* right of vertical segment */
+      }
+
+      /* Also try the other side */
+      var px2=isHoriz?mx:mx-PERP;
+      var py2=isHoriz?my+PERP:my;
+
+      var s1=scorePoint(px,py,len,isHoriz,allRects);
+      var s2=scorePoint(px2,py2,len,isHoriz,allRects);
+
+      if(s1>bestScore){bestScore=s1;bestX=px;bestY=py;}
+      if(s2>bestScore){bestScore=s2;bestX=px2;bestY=py2;}
+    }
+
+    /* Fallback to middle segment midpoint if nothing scored */
+    if(bestScore===-Infinity){
+      var mid=Math.floor(pts.length/2);
+      bestX=(pts[mid-1][0]+pts[mid][0])/2;
+      bestY=(pts[mid-1][1]+pts[mid][1])/2;
+    }
+
+    _placedLabels.push({x:bestX,y:bestY});
+    return{mx:bestX,my:bestY};
+  }
+
+  function buildPath(pts,R){
+    if(pts.length<2)return{d:'',mx:0,my:0,pts:pts};
+    var d='M'+pts[0][0]+','+pts[0][1];
+    for(var i=1;i<pts.length-1;i++){
+      var p=pts[i-1],c=pts[i],n=pts[i+1];
+      var dx1=c[0]-p[0],dy1=c[1]-p[1];
+      var dx2=n[0]-c[0],dy2=n[1]-c[1];
+      var l1=Math.sqrt(dx1*dx1+dy1*dy1),l2=Math.sqrt(dx2*dx2+dy2*dy2);
+      var r=Math.min(R,l1/2,l2/2);
+      if(r<1){d+=' L'+c[0]+','+c[1];continue;}
+      var bx0=c[0]-r*(dx1/l1),by0=c[1]-r*(dy1/l1);
+      var ex0=c[0]+r*(dx2/l2),ey0=c[1]+r*(dy2/l2);
+      d+=' L'+bx0.toFixed(1)+','+by0.toFixed(1)+' Q'+c[0]+','+c[1]+' '+ex0.toFixed(1)+','+ey0.toFixed(1);
+    }
+    d+=' L'+pts[pts.length-1][0]+','+pts[pts.length-1][1];
+    return{d:d,mx:0,my:0,pts:pts};  /* mx/my filled in by pickLabelPos after routing */
+  }
+
+
   var rels=[
-    ["T000","T001","1:N","b","t"],
-    ["T001","T001W","1:N","r","l"],
-    ["T001W","T001L","1:N","b","t"],
-    ["T001L","MARD","1:N","b","t"],
-    ["T001W","T024I","1:N","r","l"],
-    ["T001W","CRHD","1:N","r","l"],
-    ["CRHD","CRCO","1:N","b","t"],
-    ["T001W","IFLO","1:N","r","l"],
-    ["IFLO","ILOA","1:1","b","t"],
-    ["EQUI","ILOA","1:1","l","r"],
-    ["EQUI","STKO","1:N","b","t"],
-    ["STKO","STPO","1:N","r","l"],
-    ["KLAH","KSSK","1:N","r","l"],
-    ["QMEL","QMFE","1:N","b","t"],
-    ["QMEL","AUFK","1:1","r","l"],
-    ["AUFK","AFKO","1:1","b","t"],
-    ["AUFK","AFVC","1:N","r","l"],
-    ["AFVC","RESB","1:N","b","t"],
-    ["AFVC","AFRU","1:N","r","l"],
-    ["AUFK","COBK","1:N","b","b"],
-    ["COBK","COEP","1:N","b","t"],
-    ["PLKO","PLPO","1:N","b","t"],
-    ["PLPO","PLMZ","1:N","b","t"],
-    ["MPLA","MPOS","1:N","b","t"],
-    ["MPLA","MHIS","1:N","b","t"],
-    ["STRA","STRAT_P","1:N","b","t"],
-    ["STRA","MPLA","1:N","l","r"],
-    ["IMPTT","IMRG","1:N","b","t"],
-    ["MPOS","PLKO","N:1","l","r"],
-    ["RESB","MARD","N:1","l","r"]
+    /* ── ORG: col A downward ── */
+    ["T000",  "T001",    "1:N","b","t",  undefined, 0,    0   ],
+    ["T001",  "T001W",   "1:N","r","l",  undefined, 0,    0   ],
+    /* ── ORG: col B downward ── */
+    ["T001W", "T001L",   "1:N","b","t",  undefined, -0.4, 0   ],
+    ["T001L", "MARD",    "1:N","b","t",  undefined, 0,    0   ],
+    /* ── T001W right → 3 targets: T024I(top), CRHD(mid), IFLO(bottom) ── */
+    ["T001W", "T024I",   "1:N","r","l",  undefined, -0.5, 0   ],
+    ["T001W", "CRHD",    "1:N","r","l",  undefined,  0,   0   ],
+    ["T001W", "IFLO",    "1:N","r","l",  undefined,  0.5, 0   ],
+    /* ── ORG: col C downward ── */
+    ["CRHD",  "CRCO",    "1:N","b","t",  undefined, 0,    0   ],
+    /* ── TECH: IFLO col ── */
+    ["IFLO",  "ILOA",    "1:1","b","t",  undefined, -0.3, -0.3],
+    /* ── TECH: EQUI → IFLO (left side) ── */
+    ["EQUI",  "IFLO",    "N:1","l","r",  undefined, -0.4, 0   ],
+    /* ── TECH: EQUI bottom → ILOA and MAST, spread apart ── */
+    ["EQUI",  "ILOA",    "1:1","b","l",  undefined, -0.5, 0   ],
+    ["EQUI",  "MAST",    "1:N","b","t",  undefined,  0.3, 0   ],
+    /* ── TECH: MAST → STKO ── */
+    ["MAST",  "STKO",    "N:1","b","t",  undefined, 0,    0   ],
+    /* ── TECH: STKO → STPO, KLAH col ── */
+    ["STKO",  "STPO",    "1:N","r","l",  undefined, 0,    0.4 ],
+    ["KLAH",  "KSSK",    "1:N","b","t",  undefined, 0,    0   ],
+    ["KSSK",  "STPO",    "1:N","b","t",  undefined, 0,    -0.4],
+    /* ── PROC: col A ── */
+    ["QMEL",  "QMFE",    "1:N","b","t",  undefined, -0.3, 0   ],
+    ["QMEL",  "AUFK",    "N:1","r","l",  undefined, 0,    0   ],
+    /* ── PROC: AUFK right → AFVC(top) and COBK(bottom), spread ── */
+    ["AUFK",  "AFKO",    "1:1","b","t",  undefined, 0,    0   ],
+    ["AUFK",  "AFVC",    "1:N","r","l",  undefined, -0.5, 0   ],
+    ["AUFK",  "COBK",    "1:N","r","l",  undefined,  0.5, 0   ],
+    /* ── PROC: col C downward ── */
+    ["AFVC",  "RESB",    "1:N","b","t",  undefined, 0,    0   ],
+    ["RESB",  "AFRU",    "1:N","b","t",  undefined, 0,    0   ],
+    /* ── PROC: col D ── */
+    ["COBK",  "COEP",    "1:N","b","t",  undefined, 0,    0   ],
+    /* ── PREV: col A downward ── */
+    ["PLKO",  "PLPO",    "1:N","b","t",  undefined, 0,    0   ],
+    ["PLPO",  "PLMZ",    "1:N","b","t",  undefined, 0,    0   ],
+    /* ── PREV: col B downward ── */
+    ["MPLA",  "MPOS",    "1:N","b","t",  undefined, 0,    0   ],
+    ["MPOS",  "MHIS",    "1:N","b","t",  undefined, 0,    0   ],
+    /* ── PREV: STRA → MPLA (left), STRA → STRAT_P (down) ── */
+    ["STRA",  "STRAT_P", "1:N","b","t",  undefined, 0,    0   ],
+    ["STRA",  "MPLA",    "1:N","l","r",  undefined, 0,    0   ],
+    /* ── PREV: MPOS left → PLKO (spread from MHIS link) ── */
+    ["MPOS",  "PLKO",    "N:1","l","r",  undefined, -0.5, 0.5 ],
+    /* ── PREV: col D ── */
+    ["IMPTT", "IMRG",    "1:N","b","t",  undefined, 0,    0   ],
+    /* ── Cross-domain dashed lines ── */
+    ["RESB",  "MARD",    "N:1","t","b",  undefined, 0,    0   ],
+    ["MPOS",  "EQUI",    "N:1","t","b",  undefined, -0.4, -0.4],
+    ["MPOS",  "IFLO",    "N:1","t","b",  undefined,  0.4,  0.4],
+    ["MHIS",  "AUFK",    "N:1","l","r",  undefined, 0,    0   ]
   ];
 
   /* Single arrowhead marker using currentColor trick */
@@ -332,29 +1045,39 @@ function renderErd(){
     '</filter>'+
     '</defs>';
 
-  var svgL='',svgLbl='';
+  var svgL='',svgHits='',svgLbl='';
+  _placedLabels=[];
+  var _allRects=Object.keys(tblPos).map(function(k){return tblRect(k);});
   rels.forEach(function(r){
-    var a=anch(r[0],r[3]),b=anch(r[1],r[4]);
+    var a=anch(r[0],r[3],r[6]||0),b=anch(r[1],r[4],r[7]||0);
     var sd=(ERD[r[0]]||{}).domain||'org';
     var td=(ERD[r[1]]||{}).domain||'org';
     var cross=sd!==td;
     var cv='var(--'+(domVar[sd]||'text3')+')';
-    var bp=bez(a.x,a.y,b.x,b.y,r[3],r[4]);
+    var bp=routePath(a.x,a.y,b.x,b.y,r[3],r[4],r[0],r[1]);
+    var lp=pickLabelPos(bp.pts||[[a.x,a.y],[b.x,b.y]],_allRects);
+    bp.mx=lp.mx; bp.my=lp.my;
 
+    /* Invisible wide hit-area for line hover — rendered last so it's on top */
+    svgHits+='<path class="rel-line-hit" data-from="'+r[0]+'" data-to="'+r[1]+'" data-card="'+r[2]+'"'+
+      ' d="'+bp.d+'"/>';
     svgL+='<path class="rel-line" data-from="'+r[0]+'" data-to="'+r[1]+'"'+
       ' d="'+bp.d+'"'+
       ' style="stroke:'+cv+';color:'+cv+'"'+
       ' stroke-width="1.8" fill="none" opacity=".55"'+
       (cross?' stroke-dasharray="8,4"':'')+
-      ' marker-end="url(#ah)" stroke-linecap="round" stroke-linejoin="round"/>';
+      ' marker-end="url(#ah)" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>';
 
-    /* Cardinality badge */
+    /* Cardinality badge — grouped so highlight can dim it */
     var lw=r[2].length*5.8+12;
+    svgLbl+='<g class="rel-lbl" data-from="'+r[0]+'" data-to="'+r[1]+'" pointer-events="none"'+
+      ' style="transition:opacity .18s;opacity:.9">';
     svgLbl+='<rect x="'+(bp.mx-lw/2)+'" y="'+(bp.my-8.5)+'" width="'+lw+'" height="16" rx="3"'+
       ' style="fill:var(--card);stroke:'+cv+'" stroke-width="0.8"/>';
     svgLbl+='<text x="'+bp.mx+'" y="'+(bp.my+4.5)+'" text-anchor="middle"'+
       ' font-size="9" font-weight="600" font-family="IBM Plex Mono,monospace"'+
       ' style="fill:'+cv+'">'+r[2]+'</text>';
+    svgLbl+='</g>';
   });
 
   function tblHtml(key){
@@ -372,7 +1095,7 @@ function renderErd(){
       '<div class="td2">'+t.desc+'</div>'+rows+'</div>';
   }
 
-  var cw=1730,ch=1310;
+  var cw=1800,ch=1600;
   var domH=domains.map(function(d){var c=COLORS[d.color];
     return '<div class="erd-domain" style="left:'+d.x+'px;top:'+d.y+'px;width:'+d.w+'px;height:'+d.h+'px">'+
     '<div class="erd-domain-label" style="color:'+c.fg+'">'+d.label+'</div></div>';}).join('');
@@ -388,44 +1111,512 @@ function renderErd(){
     '<span class="tag" style="font-family:IBM Plex Mono,monospace;background:var(--bg2)"><span style="color:var(--blue);font-weight:600">FK</span> Foreign</span>'+
     '<span class="tag" style="background:var(--bg2);color:var(--text3);letter-spacing:2px">&#x2014;&#x2014; Cross-domain</span>'+
     '</div>'+
+    '<div class="line-tooltip" id="lineTooltip"></div>'+
     '<div class="erd-wrap">'+
     '<div class="erd-canvas" style="width:'+cw+'px;height:'+ch+'px">'+
     domH+
     '<svg class="erd-svg" width="'+cw+'" height="'+ch+'" viewBox="0 0 '+cw+' '+ch+'">'+defs+svgL+svgLbl+'</svg>'+
     tbls+
+    '<svg class="erd-hit-svg" width="'+cw+'" height="'+ch+'" viewBox="0 0 '+cw+' '+ch+'">'+svgHits+'</svg>'+
     '</div></div>';
 }
 
 /* ============================================================ HOVER HIGHLIGHT */
 function initErdHighlight(){
   var lines=document.querySelectorAll('.rel-line');
+  var hits=document.querySelectorAll('.rel-line-hit');
   var tbls=document.querySelectorAll('.erd-tbl');
-  tbls.forEach(function(el){
-    el.addEventListener('mouseenter',function(){
-      var key=this.dataset.t;
+  var tooltip=document.getElementById('lineTooltip');
+
+  var lbls=document.querySelectorAll('.rel-lbl');
+
+  /* ── Pinned state: null = nothing pinned ── */
+  var pinned=null; /* {type:'card'|'line', key, from, to, card} */
+
+  function applyCardHighlight(key){
+    lines.forEach(function(l){
+      var connected=l.dataset.from===key||l.dataset.to===key;
+      l.style.opacity=connected?'1':'0.05';
+      l.style.strokeWidth=connected?'2.8':'1.8';
+    });
+    lbls.forEach(function(l){
+      var connected=l.dataset.from===key||l.dataset.to===key;
+      l.style.opacity=connected?'1':'0.05';
+    });
+    tbls.forEach(function(t){
+      if(t.dataset.t===key){t.classList.remove('hl-dim');return;}
+      var tKey=t.dataset.t,linked=false;
       lines.forEach(function(l){
-        var connected=l.dataset.from===key||l.dataset.to===key;
-        l.style.opacity=connected?'1':'0.05';
-        l.style.strokeWidth=connected?'2.8':'1.8';
+        if((l.dataset.from===key&&l.dataset.to===tKey)||(l.dataset.to===key&&l.dataset.from===tKey))linked=true;
       });
-      tbls.forEach(function(t){
-        if(t===el)return;
-        /* check if connected */
-        var tKey=t.dataset.t;
-        var linked=false;
-        lines.forEach(function(l){
-          if((l.dataset.from===key&&l.dataset.to===tKey)||(l.dataset.to===key&&l.dataset.from===tKey))linked=true;
-        });
-        t.classList.toggle('hl-active',linked);
-        t.classList.toggle('hl-dim',!linked);
-      });
-      el.classList.remove('hl-dim');
+      t.classList.toggle('hl-active',linked);
+      t.classList.toggle('hl-dim',!linked);
+    });
+  }
+
+  function applyLineHighlight(from,to){
+    lines.forEach(function(l){
+      var match=l.dataset.from===from&&l.dataset.to===to;
+      l.style.opacity=match?'1':'0.05';
+      l.style.strokeWidth=match?'3':'1.8';
+    });
+    lbls.forEach(function(l){
+      var match=l.dataset.from===from&&l.dataset.to===to;
+      l.style.opacity=match?'1':'0.05';
+    });
+    tbls.forEach(function(t){
+      var k=t.dataset.t,isEnd=(k===from||k===to);
+      t.classList.toggle('hl-active',isEnd);
+      t.classList.toggle('hl-dim',!isEnd);
+    });
+  }
+
+  function resetAll(){
+    lines.forEach(function(l){l.style.opacity='0.55';l.style.strokeWidth='1.8';});
+    lbls.forEach(function(l){l.style.opacity='0.9';});
+    tbls.forEach(function(t){t.classList.remove('hl-active','hl-dim','hl-pinned');});
+    if(tooltip)tooltip.className='line-tooltip';
+  }
+
+  function showLineTooltip(from,to,card,e){
+    if(!tooltip)return;
+    var fromData=ERD[from]||{},toData=ERD[to]||{};
+    var fromColor=COLORS[(fromData.color)||'teal'];
+    var toColor=COLORS[(toData.color)||'teal'];
+    tooltip.innerHTML=
+      '<span class="lt-card" style="background:'+fromColor.bg+';color:'+fromColor.fg+'">'+from+'</span>'+
+      '<span class="lt-rel">'+card+'</span>'+
+      '<span class="lt-card" style="background:'+toColor.bg+';color:'+toColor.fg+'">'+to+'</span>'+
+      '<span style="color:var(--text3);margin-left:6px;font-size:9px">'+(fromData.desc||'')+'  →  '+(toData.desc||'')+'</span>'+
+      '<span style="color:var(--text3);margin-left:10px;font-size:9px;opacity:.6">(click to pin)</span>';
+    tooltip.className='line-tooltip show';
+    if(e)moveTip(e);
+  }
+
+  /* ── Table events ── */
+  tbls.forEach(function(el){
+    el.addEventListener('click',function(e){
+      e.stopPropagation();
+      var key=this.dataset.t;
+      if(pinned&&pinned.type==='card'&&pinned.key===key){
+        /* click same card → unpin */
+        pinned=null;
+        resetAll();
+        tbls.forEach(function(t){t.classList.remove('hl-pinned');});
+      } else {
+        pinned={type:'card',key:key};
+        tbls.forEach(function(t){t.classList.remove('hl-pinned');});
+        el.classList.add('hl-pinned');
+        applyCardHighlight(key);
+        if(tooltip)tooltip.className='line-tooltip';
+      }
+    });
+    el.addEventListener('mouseenter',function(){
+      if(pinned)return; /* don't override pinned state */
+      applyCardHighlight(this.dataset.t);
     });
     el.addEventListener('mouseleave',function(){
-      lines.forEach(function(l){l.style.opacity='0.55';l.style.strokeWidth='1.8';});
-      tbls.forEach(function(t){t.classList.remove('hl-active','hl-dim');});
+      if(pinned)return;
+      resetAll();
     });
   });
+
+  /* ── Line events ── */
+  hits.forEach(function(hit){
+    hit.addEventListener('click',function(e){
+      e.stopPropagation();
+      var from=this.dataset.from,to=this.dataset.to,card=this.dataset.card;
+      if(pinned&&pinned.type==='line'&&pinned.from===from&&pinned.to===to){
+        /* click same line → unpin */
+        pinned=null;
+        resetAll();
+      } else {
+        pinned={type:'line',from:from,to:to,card:card};
+        tbls.forEach(function(t){t.classList.remove('hl-pinned');});
+        applyLineHighlight(from,to);
+        showLineTooltip(from,to,card,null);
+        /* anchor tooltip to centre of viewport instead of cursor */
+        if(tooltip){tooltip.style.left='50%';tooltip.style.top='80px';tooltip.style.transform='translateX(-50%)';}
+      }
+    });
+    hit.addEventListener('mouseenter',function(e){
+      if(pinned)return;
+      var from=this.dataset.from,to=this.dataset.to,card=this.dataset.card;
+      applyLineHighlight(from,to);
+      showLineTooltip(from,to,card,e);
+    });
+    hit.addEventListener('mousemove',function(e){
+      if(pinned)return;
+      moveTip(e);
+    });
+    hit.addEventListener('mouseleave',function(){
+      if(pinned)return;
+      resetAll();
+      if(tooltip)tooltip.className='line-tooltip';
+    });
+  });
+
+  /* ── Click canvas background → unpin ── */
+  var canvas=document.querySelector('.erd-canvas');
+  if(canvas){
+    canvas.addEventListener('click',function(){
+      if(pinned){pinned=null;resetAll();tbls.forEach(function(t){t.classList.remove('hl-pinned');});}
+    });
+  }
+
+  function moveTip(e){
+    if(!tooltip)return;
+    var x=e.clientX+14,y=e.clientY-36;
+    /* keep inside viewport */
+    if(x+tooltip.offsetWidth>window.innerWidth-10)x=e.clientX-tooltip.offsetWidth-10;
+    if(y<8)y=e.clientY+16;
+    tooltip.style.left=x+'px';
+    tooltip.style.top=y+'px';
+  }
+}
+
+
+/* ============================================================ BUSINESS OPERATIONS */
+function renderBiz(){
+  function step(num,label,tcode,color,note){
+    var bg=COLORS[color]||COLORS.teal;
+    return '<div class="biz-step">'+
+      '<div class="biz-step-box" title="'+(note||'')+'">'+
+        '<div class="step-num" style="background:'+bg.fg+'">'+num+'</div>'+
+        label+
+        (tcode?'<span class="step-tcode" style="color:'+bg.fg+'">'+tcode+'</span>':'')+
+      '</div>'+
+    '</div>';
+  }
+  function arr(label){
+    return '<div class="biz-arrow">'+(label?'<div class="biz-arrow decision"><span>&#x2192;</span>'+label+'</div>':'&#x2192;')+'</div>';
+  }
+  function decBox(label){
+    return '<div class="biz-step"><div class="biz-decision-box">&#x25C6; '+label+'</div></div>';
+  }
+  function status(code,bg,fg){
+    return '<span class="biz-status" style="background:'+bg+';color:'+fg+'">'+code+'</span>';
+  }
+  function sa(){return '<span class="biz-status-arrow">&#x2192;</span>';}
+
+  var scenarios=[
+
+    /* ══════════════════════════════════════════════════════════
+       SCENARIO 1 — Corrective Maintenance (Breakdown)
+    ══════════════════════════════════════════════════════════ */
+    {
+      icon:'🔧', color:'blue',
+      title:'Corrective Maintenance — Breakdown Repair',
+      sub:'Reactive process triggered by equipment failure or operator-reported defect',
+      trigger:'Trigger: Equipment failure / operator call',
+      statusFlow:[
+        {code:'OSNO',bg:'var(--bg2)',fg:'var(--text3)'},
+        {code:'NOPR',bg:'var(--blue-l)',fg:'var(--blue)'},
+        {code:'ORAS',bg:'var(--amber-l)',fg:'var(--amber)'},
+        {code:'CRTD',bg:'var(--purple-l)',fg:'var(--purple)'},
+        {code:'REL',bg:'var(--teal-l)',fg:'var(--teal)'},
+        {code:'CNF',bg:'var(--green-l)',fg:'var(--green)'},
+        {code:'TECO',bg:'var(--coral-l)',fg:'var(--coral)'},
+        {code:'CLSD',bg:'var(--bg2)',fg:'var(--text3)'}
+      ],
+      lanes:[
+        {
+          role:'Operator / Technician', color:'#2563eb',
+          steps:[
+            step(1,'Detect failure & report defect','IW21','blue','Create PM notification type M2 — malfunction report'),
+            arr(),
+            step(2,'Describe damage, object & location','IW21','blue','Assign functional location or equipment, add damage/cause codes'),
+            arr(),
+          ]
+        },
+        {
+          role:'Maintenance Planner', color:'#b45309',
+          steps:[
+            step(3,'Review notification & assess priority','IW22','amber','Review damage codes, object history, set priority 1-4'),
+            arr(),
+            step(4,'Create maintenance order','IW31','amber','Type PM01/PM02, assign work center, planning plant, planner group'),
+            arr(),
+            step(5,'Plan operations & materials','IW32','amber','Add operations with work center + duration. Pull BOM components to RESB'),
+            arr(),
+            step(6,'Release order','IW32','amber','Status REL — triggers material reservation, capacity load, permit checks'),
+          ]
+        },
+        {
+          role:'Supervisor / Scheduler', color:'#6d28d9',
+          steps:[
+            step(7,'Schedule & dispatch technician','IW38','purple','Filter by planner group, work center, priority. Assign via capacity planning'),
+            arr(),
+            step(8,'Print / send work order','IW3D','purple','Work order printout or SAP Fiori mobile dispatch'),
+          ]
+        },
+        {
+          role:'Technician (Execution)', color:'#0f766e',
+          steps:[
+            step(9,'Execute repair on equipment','—','teal','Perform physical repair. Record actual findings, parts consumed'),
+            arr(),
+            step(10,'Goods issue spare parts','MIGO','teal','Movement type 261 — issue reserved components to order'),
+            arr(),
+            step(11,'Confirm actual hours & findings','IW41','teal','Enter actual work hours per operation. Set final confirmation flag'),
+          ]
+        },
+        {
+          role:'Planner / Controller', color:'#c2410c',
+          steps:[
+            step(12,'Technically complete order','IW32','coral','Set TECO status — stops further postings, triggers settlement rule'),
+            arr(),
+            step(13,'Settle costs to receiver','KO88','coral','Allocate order costs to Cost Center, Asset, or WBS element'),
+            arr(),
+            step(14,'Close notification & order','IW22','coral','Set notification to NOCO. Order status CLSD. History updated on equipment'),
+          ]
+        }
+      ],
+      kpis:['MTTR tracked via IW41 confirmations','Cost via KOB1 order report','Backlog via IW38 open orders']
+    },
+
+    /* ══════════════════════════════════════════════════════════
+       SCENARIO 2 — Preventive Maintenance Execution
+    ══════════════════════════════════════════════════════════ */
+    {
+      icon:'📅', color:'amber',
+      title:'Preventive Maintenance — Scheduled Execution',
+      sub:'Time-based or counter-based PM orders auto-generated by maintenance plans',
+      trigger:'Trigger: IP10/IP30 deadline monitoring batch job',
+      statusFlow:[
+        {code:'Plan active',bg:'var(--amber-l)',fg:'var(--amber)'},
+        {code:'Order CRTD',bg:'var(--purple-l)',fg:'var(--purple)'},
+        {code:'REL',bg:'var(--teal-l)',fg:'var(--teal)'},
+        {code:'CNF',bg:'var(--green-l)',fg:'var(--green)'},
+        {code:'TECO',bg:'var(--coral-l)',fg:'var(--coral)'},
+        {code:'Plan updated',bg:'var(--amber-l)',fg:'var(--amber)'}
+      ],
+      lanes:[
+        {
+          role:'System (Batch / Scheduler)', color:'#6d28d9',
+          steps:[
+            step(1,'Run deadline monitoring','IP10','purple','Daily batch job evaluates all active maintenance plans against due dates or counter readings'),
+            arr(),
+            step(2,'Auto-generate PM orders','IP10','purple','Orders created with type PM03, linked to maintenance plan item + task list'),
+            arr(),
+            step(3,'Update next planned date','IP10','purple','Plan call horizon advances. MHIS record written with call date and order number'),
+          ]
+        },
+        {
+          role:'Maintenance Planner', color:'#b45309',
+          steps:[
+            step(4,'Review auto-generated orders','IW38','amber','Filter by order type PM03. Verify task list operations were copied correctly'),
+            arr(),
+            step(5,'Adjust & release orders','IW32','amber','Confirm materials, work center assignment. Release batch via IW38 mass change'),
+            arr(),
+            step(6,'Update maintenance strategy if needed','IP11','amber','Review if actual condition warrants interval change — increase or decrease'),
+          ]
+        },
+        {
+          role:'Technician (Execution)', color:'#0f766e',
+          steps:[
+            step(7,'Execute PM task list steps','—','teal','Follow standardised task list operations: inspect, lubricate, calibrate, replace'),
+            arr(),
+            step(8,'Issue materials from store','MIGO','teal','Goods issue type 261 for consumables and replacement parts'),
+            arr(),
+            step(9,'Record measurement readings','IK11','teal','Update counter reading (runtime hours, cycles) — drives next due date calculation'),
+            arr(),
+            step(10,'Confirm operations','IW41','teal','Log actual time per operation. Note any defects found for follow-up notifications'),
+          ]
+        },
+        {
+          role:'Planner / Controller', color:'#c2410c',
+          steps:[
+            step(11,'TECO & settle order','KO88','coral','Technically complete, run settlement. Costs flow to cost center or fixed asset'),
+            arr(),
+            step(12,'Review PM compliance KPIs','S_ALR','coral','Check plan adherence %, overdue plans, completion rate per asset class'),
+          ]
+        }
+      ],
+      kpis:['PM compliance % via IP24','Schedule adherence via IW69','Cost per PM via KOB1']
+    },
+
+    /* ══════════════════════════════════════════════════════════
+       SCENARIO 3 — Shutdown / Turnaround Management
+    ══════════════════════════════════════════════════════════ */
+    {
+      icon:'🏭', color:'purple',
+      title:'Shutdown / Turnaround Maintenance',
+      sub:'Planned major outage requiring multi-discipline coordination, long lead-time materials and capacity pre-booking',
+      trigger:'Trigger: Annual/biennial shutdown window confirmed by Operations',
+      statusFlow:[
+        {code:'Scope defined',bg:'var(--purple-l)',fg:'var(--purple)'},
+        {code:'Orders planned',bg:'var(--blue-l)',fg:'var(--blue)'},
+        {code:'Materials procured',bg:'var(--amber-l)',fg:'var(--amber)'},
+        {code:'Execution REL',bg:'var(--teal-l)',fg:'var(--teal)'},
+        {code:'TECO / settle',bg:'var(--coral-l)',fg:'var(--coral)'},
+        {code:'Handback',bg:'var(--green-l)',fg:'var(--green)'}
+      ],
+      lanes:[
+        {
+          role:'Reliability Engineer / Planner', color:'#6d28d9',
+          steps:[
+            step(1,'Define shutdown scope & WBS','CJ01','purple','Create WBS structure for turnaround. Each work package = PM order linked to WBS'),
+            arr(),
+            step(2,'Create planned orders per asset','IW31','purple','Batch-create PM04 orders for all in-scope equipment. Assign shutdown work center'),
+            arr(),
+            step(3,'Build / update task lists','IA01','purple','Detailed operation steps with labour hours per trade (mechanical, electrical, instrument)'),
+          ]
+        },
+        {
+          role:'Materials / Procurement', color:'#b45309',
+          steps:[
+            step(4,'Identify long-lead materials','IW32','amber','Pull BOM to RESB. Identify items >8 week lead time for early procurement'),
+            arr(),
+            step(5,'Convert reservations to POs','ME21N','amber','Procurement raises POs. Materials staged at dedicated shutdown store location'),
+            arr(),
+            step(6,'Confirm material readiness','MMBE','amber','Stock confirmed at shutdown storage location before execution window opens'),
+          ]
+        },
+        {
+          role:'Supervisor / Scheduler', color:'#0369a1',
+          steps:[
+            step(7,'Capacity level & resource plan','CM01','blue','Load level across trades. Identify contractor gaps. Publish daily job schedule'),
+            arr(),
+            step(8,'Permit-to-work coordination','—','blue','Isolations, lock-out/tag-out, confined space permits issued per order'),
+            arr(),
+            step(9,'Mass release all orders','IW38','blue','Release all shutdown orders simultaneously at outage start'),
+          ]
+        },
+        {
+          role:'Technician / Contractor', color:'#0f766e',
+          steps:[
+            step(10,'Execute & confirm work','IW41','teal','Technicians confirm each operation. Defect notifications raised for any scope additions'),
+            arr(),
+            step(11,'Quality inspection sign-off','QA01','teal','Critical jobs require quality notification and inspection lot completion'),
+          ]
+        },
+        {
+          role:'Planner / Controller', color:'#c2410c',
+          steps:[
+            step(12,'TECO all orders & settle to WBS','KO88','coral','Mass TECO via IW38. Batch settlement allocates all costs to WBS/Fixed Asset'),
+            arr(),
+            step(13,'Post-shutdown analysis','S_ALR','coral','Actual vs planned hours, cost variance, defect list, lessons learned for next TAR'),
+          ]
+        }
+      ],
+      kpis:['TAR cost variance vs budget','Wrench time % from IW41','Overrun hours by trade']
+    },
+
+    /* ══════════════════════════════════════════════════════════
+       SCENARIO 4 — Condition-Based Maintenance (CBM)
+    ══════════════════════════════════════════════════════════ */
+    {
+      icon:'📊', color:'teal',
+      title:'Condition-Based Maintenance (CBM / PdM)',
+      sub:'Maintenance triggered by measured equipment condition exceeding defined thresholds',
+      trigger:'Trigger: Measurement reading exceeds threshold (vibration, temperature, pressure, runtime hours)',
+      statusFlow:[
+        {code:'Reading recorded',bg:'var(--teal-l)',fg:'var(--teal)'},
+        {code:'Threshold breach',bg:'var(--amber-l)',fg:'var(--amber)'},
+        {code:'Notification raised',bg:'var(--blue-l)',fg:'var(--blue)'},
+        {code:'Order created',bg:'var(--purple-l)',fg:'var(--purple)'},
+        {code:'Intervention done',bg:'var(--green-l)',fg:'var(--green)'}
+      ],
+      lanes:[
+        {
+          role:'Reliability / Instrumentation', color:'#0f766e',
+          steps:[
+            step(1,'Define measurement points','IK01','teal','Create measurement point on equipment. Set characteristic (vibration mm/s), upper/lower limits'),
+            arr(),
+            step(2,'Record condition reading','IK11','teal','Manual entry or IoT/PI integration. Reading stored in IMRG against IMPTT point'),
+            arr(),
+            step(3,'System evaluates threshold','IK11','teal','If reading outside limits → SAP auto-creates notification or flags for review'),
+          ]
+        },
+        {
+          role:'Reliability Engineer', color:'#6d28d9',
+          steps:[
+            step(4,'Analyse trend data','IK17','purple','Review measurement history chart. Confirm degradation trend vs. single anomaly'),
+            arr(),
+            step(5,'Decide intervention type','—','purple','Minor adjustment vs. planned replacement vs. immediate shutdown — risk-based decision'),
+            arr(),
+            arr(),
+          ]
+        },
+        {
+          role:'Maintenance Planner', color:'#b45309',
+          steps:[
+            step(6,'Create corrective notification','IW21','amber','Reference measurement point and reading value in notification long text'),
+            arr(),
+            step(7,'Plan intervention order','IW31','amber','PM01 order with specific operations for the identified failure mode. Attach CBM report'),
+            arr(),
+            step(8,'Source condition-specific parts','ME21N','amber','Order specialist components (bearings, seals) based on exact failure diagnosis'),
+          ]
+        },
+        {
+          role:'Technician (Execution)', color:'#0f766e',
+          steps:[
+            step(9,'Execute targeted repair','—','teal','Precision intervention based on failure diagnosis — not generic PM task list'),
+            arr(),
+            step(10,'Post-repair measurement','IK11','teal','Record new baseline reading to confirm repair effectiveness. Reset threshold monitoring'),
+          ]
+        },
+        {
+          role:'Reliability Engineer', color:'#6d28d9',
+          steps:[
+            step(11,'Update maintenance strategy','IP11','purple','Adjust PM interval based on actual degradation rate observed from CBM data'),
+            arr(),
+            step(12,'Close loop — update FMEA','—','purple','Document failure mode, root cause, and effectiveness of intervention in FMEA register'),
+          ]
+        }
+      ],
+      kpis:['PdM coverage % of critical assets','False positive rate from thresholds','Defect-to-repair lead time']
+    }
+
+  ];
+
+  /* ── Render ─────────────────────────────────────────────── */
+  function renderScenario(sc){
+    var c=COLORS[sc.color];
+    var hd='<div class="biz-scenario-hd">'+
+      '<div class="bs-icon" style="background:'+c.bg+';color:'+c.fg+'">'+sc.icon+'</div>'+
+      '<div><div class="bs-title" style="color:'+(c.dk||c.fg)+'">'+sc.title+'</div>'+
+      '<div class="bs-sub">'+sc.sub+'</div></div>'+
+      '<div class="bs-trigger">'+sc.trigger+'</div>'+
+    '</div>';
+
+    /* Status lifecycle bar */
+    var sf='<div class="biz-status-flow">';
+    sf+='<span style="font-size:10px;font-weight:600;color:var(--text3);margin-right:10px;white-space:nowrap">Order lifecycle:</span>';
+    sc.statusFlow.forEach(function(s,i){
+      sf+=status(s.code,s.bg,s.fg);
+      if(i<sc.statusFlow.length-1)sf+=sa();
+    });
+    sf+='</div>';
+
+    /* Swimlanes */
+    var grid='<div class="biz-swimlanes">';
+    sc.lanes.forEach(function(lane){
+      grid+='<div class="biz-lane">'+
+        '<div class="biz-lane-label">'+
+          '<div class="role-dot" style="background:'+lane.color+'"></div>'+
+          lane.role+
+        '</div>'+
+        '<div class="biz-lane-steps">'+lane.steps.filter(function(s,i){var isArrow=s.indexOf('biz-arrow')!==-1||s.indexOf('biz-decision')!==-1;return !(isArrow&&i===lane.steps.length-1);}).join('')+'</div>'+
+      '</div>';
+    });
+    grid+='</div>';
+
+    /* KPI footer */
+    var footer='<div class="biz-footer"><span class="kpi-label">&#x1F4CA; Key metrics:</span>'+
+      sc.kpis.map(function(k){return '<span class="kpi-chip" style="background:'+c.bg+';color:'+c.fg+'">'+k+'</span>';}).join('')+
+    '</div>';
+
+    return '<div class="biz-scenario">'+hd+sf+grid+footer+'</div>';
+  }
+
+  return '<p class="section-desc">End-to-end SAP EAM business operation workflows — roles, steps, SAP transactions, and KPIs for each scenario. Hover any step for details.</p>'+
+    '<div class="legend-bar">'+
+    '<span class="tag" style="background:var(--blue-l);color:var(--blue)">🔧 Corrective</span>'+
+    '<span class="tag" style="background:var(--amber-l);color:var(--amber)">📅 Preventive</span>'+
+    '<span class="tag" style="background:var(--purple-l);color:var(--purple)">🏭 Shutdown/TAR</span>'+
+    '<span class="tag" style="background:var(--teal-l);color:var(--teal)">📊 Condition-based</span>'+
+    '</div>'+
+    '<div class="biz-wrap">'+scenarios.map(renderScenario).join('')+'</div>';
 }
 
 /* ============================================================ TAB SWITCH */
@@ -436,13 +1627,15 @@ function switchTab(tab){
   var sec=document.getElementById('sec-'+tab);
   sec.classList.add('active');
   closeDetail();closeErd();
+  var mc=document.getElementById('mainContent');if(mc)mc.scrollTop=0;
   if(!sec.dataset.rendered){
     sec.dataset.rendered='1';
-    if(tab==='org')sec.innerHTML=renderOrg();
-    if(tab==='tech')sec.innerHTML=renderTech();
-    if(tab==='proc')sec.innerHTML=renderProc();
-    if(tab==='prev')sec.innerHTML=renderPrev();
+    if(tab==='org'){sec.innerHTML=renderOrg();initCcHighlight('org');}
+    if(tab==='tech'){sec.innerHTML=renderTech();initCcHighlight('tech');}
+    if(tab==='proc'){sec.innerHTML=renderProc();initCcHighlight('proc');}
+    if(tab==='prev'){sec.innerHTML=renderPrev();initCcHighlight('prev');}
     if(tab==='erd'){sec.innerHTML=renderErd();initErdHighlight();}
+    if(tab==='biz')sec.innerHTML=renderBiz();
   }
 }
 
@@ -480,7 +1673,7 @@ function showErd(key){
 }
 function closeErd(){document.getElementById('edp').className='edp';document.getElementById('eov').className='eov';document.querySelectorAll('.erd-tbl').forEach(function(el){el.classList.remove('ea')});}
 
-switchTab('org');
+switchTab('org');initCcHighlight('org');
 </script>
 </body>
 </html>
