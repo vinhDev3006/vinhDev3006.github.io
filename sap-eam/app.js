@@ -82,24 +82,24 @@ function renderPrev(){return '<p class="section-desc">Preventive & condition-bas
    ============================================================ */
 function renderErd(){
   var tblPos={
-    T000:{x:20,y:40},T001:{x:20,y:185},T001W:{x:260,y:40},T001L:{x:260,y:210},
-    MARD:{x:260,y:370},T024I:{x:500,y:40},CRHD:{x:500,y:195},CRCO:{x:500,y:370},
-    IFLO:{x:740,y:40},EQUI:{x:1000,y:40},ILOA:{x:740,y:220},
-    STKO:{x:1000,y:220},STPO:{x:1240,y:220},KLAH:{x:1000,y:390},KSSK:{x:1240,y:390},
-    QMEL:{x:20,y:580},QMFE:{x:20,y:770},AUFK:{x:280,y:580},AFKO:{x:280,y:790},
-    AFVC:{x:520,y:580},RESB:{x:520,y:760},AFRU:{x:730,y:580},
-    COBK:{x:730,y:770},COEP:{x:730,y:930},
-    PLKO:{x:960,y:580},PLPO:{x:960,y:760},PLMZ:{x:960,y:950},
-    MPLA:{x:1180,y:580},MPOS:{x:1180,y:760},MHIS:{x:1180,y:950},
-    STRA:{x:1380,y:580},STRAT_P:{x:1380,y:730},
-    IMPTT:{x:1380,y:880},IMRG:{x:1380,y:1030}
+    T000:{x:30,y:40},T001:{x:30,y:210},T001W:{x:300,y:40},T001L:{x:300,y:240},
+    MARD:{x:300,y:420},T024I:{x:570,y:40},CRHD:{x:570,y:240},CRCO:{x:570,y:420},
+    IFLO:{x:840,y:40},EQUI:{x:1120,y:40},ILOA:{x:840,y:260},
+    STKO:{x:1120,y:260},STPO:{x:1380,y:260},KLAH:{x:1120,y:450},KSSK:{x:1380,y:450},
+    QMEL:{x:30,y:660},QMFE:{x:30,y:870},AUFK:{x:320,y:660},AFKO:{x:320,y:900},
+    AFVC:{x:590,y:660},RESB:{x:590,y:870},AFRU:{x:840,y:660},
+    COBK:{x:840,y:870},COEP:{x:840,y:1060},
+    PLKO:{x:1080,y:660},PLPO:{x:1080,y:870},PLMZ:{x:1080,y:1080},
+    MPLA:{x:1300,y:660},MPOS:{x:1300,y:870},MHIS:{x:1300,y:1080},
+    STRA:{x:1520,y:660},STRAT_P:{x:1520,y:830},
+    IMPTT:{x:1520,y:1000},IMRG:{x:1520,y:1180}
   };
 
   var domains=[
-    {label:"Organizational master data",x:0,y:0,w:700,h:520,color:"teal"},
-    {label:"Technical objects",x:720,y:0,w:720,h:520,color:"purple"},
-    {label:"Maintenance processing (transactional)",x:0,y:550,w:920,h:530,color:"blue"},
-    {label:"Preventive maintenance",x:940,y:550,w:630,h:630,color:"amber"}
+    {label:"Organizational master data",x:0,y:0,w:780,h:580,color:"teal"},
+    {label:"Technical objects",x:810,y:0,w:770,h:580,color:"purple"},
+    {label:"Maintenance processing (transactional)",x:0,y:630,w:1050,h:590,color:"blue"},
+    {label:"Preventive maintenance",x:1060,y:630,w:680,h:700,color:"amber"}
   ];
 
   function tblHtml(key){

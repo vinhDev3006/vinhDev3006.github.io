@@ -100,6 +100,7 @@ header .badge{display:inline-block;background:var(--accent-light);color:var(--ac
 .erd-tbl .tf .fk{color:var(--blue);font-weight:600;font-size:8px}
 .erd-tbl .tf .fn{color:var(--text)}
 .erd-svg{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
+.erd-label{position:absolute;z-index:15;padding:1px 6px;border-radius:4px;background:var(--bg);border:.6px solid var(--line);font-size:10px;font-weight:500;font-family:'IBM Plex Mono',monospace;color:var(--text2);white-space:nowrap;transform:translate(-50%,-50%);pointer-events:none}
 .eov{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.3);z-index:999;display:none}
 .eov.show{display:block}
 .edp{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--card);border-radius:12px;border:1.5px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.15);z-index:1000;max-width:520px;width:92vw;max-height:80vh;overflow-y:auto;display:none;animation:fu .2s ease}
