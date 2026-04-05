@@ -260,7 +260,7 @@ function renderErd(){
   /* domain → CSS var name */
   var domVar={org:"teal",tech:"purple",proc:"blue",prev:"amber"};
 
-  function tblH(k){var t=ERD[k];return t?26+18+t.fields.length*18+5:80;}
+  function tblH(k){var t=ERD[k];return t?32+20+t.fields.length*21+4:90;}
 
   function anch(k,s){
     var p=tblPos[k];if(!p)return{x:0,y:0};
@@ -298,7 +298,7 @@ function renderErd(){
     ["CRHD","CRCO","1:N","b","t"],
     ["T001W","IFLO","1:N","r","l"],
     ["IFLO","ILOA","1:1","b","t"],
-    ["EQUI","ILOA","1:1","b","l"],
+    ["EQUI","ILOA","1:1","l","r"],
     ["EQUI","STKO","1:N","b","t"],
     ["STKO","STPO","1:N","r","l"],
     ["KLAH","KSSK","1:N","r","l"],
